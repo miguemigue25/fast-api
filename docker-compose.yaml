@@ -1,8 +1,12 @@
 # volumes:
+volumes:
+    postgres-data:
+        external: true
 services:
   fastapi:
     environment:
       CORS_HOST: http://localhost:3000
+      DATABASE_URL: postgresql://flashcard:flashcard@postgres/flashcard
     build:
       context: api
       dockerfile: Dockerfile.dev
@@ -10,6 +14,16 @@ services:
       - 8000:8000
     volumes:
       - ./api:/app
+  postgres:
+      image: postgres:14.5-bullseye
+      volumes:
+          - postgres-data:/var/lib/postgresql/data
+      environment:
+          POSTGRES_PASSWORD: flashcard  
+          POSTGRES_USER: flashcard  
+          POSTGRES_DB: flashcard
+      ports:
+          - 15432:5432
 
   ghi:
     image: node:lts-bullseye
@@ -20,8 +34,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      HOST_OS: ${OS}
+      HOST_OS: http://localhost:8000
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_API_HOST: ${REACT_APP_API_HOST}
+      REACT_APP_API_HOST: http://localhost:8000
