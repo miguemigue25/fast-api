@@ -3,9 +3,6 @@ from typing import List, Union, Optional
 from queries.pool import pool
 
 
-class Error(BaseModel):
-    message: str
-
 class UsersIn(BaseModel):
     username: str
     password: str
@@ -14,41 +11,78 @@ class UsersIn(BaseModel):
 class UsersOut(BaseModel):
     user_id: int
     username: str
-    password: str
+    
+
+class Error(BaseModel):
+    message: str
+
 
 class DuplicateAccountError(ValueError):
     pass
 
+
+class UserOutWithPassword(UsersOut):
+    hashed_password: str
+
+
+
 class UsersRepo:
-    def create_user(self, user: UsersIn) -> Union[UsersOut, Error]:
-        try:
-            # connect the database
-            with pool.connection() as conn:
-                # get a cursor (something to run SQL with)
-                with conn.cursor() as db:
-                    # run our INSERT
-                    result = db.execute(
-                        """
-                        INSERT INTO users 
-                            (username, password)
-                        VALUES
-                            (%s, %s)
-                        RETURNING user_id;
-                        """,
-                        [
-                            user.username, 
-                            user.password
-                        ] 
-                    )
-                    user_id = result.fetchone()[0]
-                    # Return new data
-                    old_data = user.dict()
-                    return UsersOut(user_id=user_id, **old_data)
-        except Exception:
-            return {"message": "error when creating user"}
+    def create_user(self, user:UsersIn, hashed_password: str) -> UserOutWithPassword:
+        # connect the database
+        with pool.connection() as conn:
+            # get a cursor (something to run SQL with)
+            with conn.cursor() as db:
+                # run our INSERT
+                result = db.execute(
+                    """
+                    INSERT INTO users 
+                        (username, hashed_password)
+                    VALUES
+                        (%s, %s)
+                    RETURNING user_id;
+                    """,
+                    [
+                        user.username, 
+                        hashed_password
+                    ] 
+                )
+                user_id = result.fetchone()[0]
+                # Return new data
+                old_data = user.dict()
+                return UserOutWithPassword(
+                    user_id=user_id,
+                    hashed_password=hashed_password,
+                    **old_data
+                )
+
             
+    def get(self, username: str) -> Optional[UserOutWithPassword]:
+            try:
+                with pool.connection() as conn:
+                    with conn.cursor() as db:
+                        result = db.execute(
+                            """
+                            SELECT user_id,
+                            username,
+                            hashed_password
+                            FROM users
+                            WHERE username = %s
+                            """,
+                            [username],
+                        )
+                        record = result.fetchone()
+                        if record is None:
+                            return None
+                        return UserOutWithPassword(
+                            user_id=record[0],
+                            username=record[1],
+                            hashed_password=record[2]
+                        )
+            except Exception as e:
+                print(e)
+                return None
     
-    def get_all_users(self) -> Union[Error, List[UsersOut]]:
+    def get_all_users(self) -> Union[List[UsersOut], Error]:
         try:
             # connect the database
             with pool.connection() as conn:
@@ -57,7 +91,7 @@ class UsersRepo:
                     # run our SELECT statement
                     result = db.execute(
                         """
-                        SELECT user_id, username, password
+                        SELECT user_id, username
                         FROM users
                         ORDER BY user_id;
                         """
@@ -67,7 +101,6 @@ class UsersRepo:
                         user = UsersOut(
                             user_id=record[0],
                             username=record[1],
-                            password=record[2],
                         )
                         result.append(user)
                     return result
@@ -84,9 +117,9 @@ class UsersRepo:
                     result = db.execute(
                         """
                         UPDATE users
-                        SET username = %s, password = %s
+                        SET username = %s, hashed_password = %s
                         WHERE user_id = %s
-                        RETURNING user_id, username, password
+                        RETURNING user_id, username
                         """,
                         [
                             user.username,
@@ -97,8 +130,7 @@ class UsersRepo:
                     record = result.fetchone()
                     return UsersOut(
                         user_id=record[0],
-                        username=record[1],
-                        password=record[2]
+                        username=record[1]
                     )
         except Exception as e:
             print (e)
@@ -114,7 +146,7 @@ class UsersRepo:
                     # run our SELECT statement
                     result = db.execute(
                         """
-                        SELECT user_id, username, password
+                        SELECT user_id, username
                         FROM users
                         WHERE user_id = %s    
                         """,
@@ -126,8 +158,7 @@ class UsersRepo:
                         return None
                     return UsersOut(
                         user_id=record[0],
-                        username=record[1],
-                        password=record[2]
+                        username=record[1]
                     )
         except Exception as e:
             print (e)

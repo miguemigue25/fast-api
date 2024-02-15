@@ -7,6 +7,7 @@ services:
     environment:
       CORS_HOST: http://localhost:3000
       DATABASE_URL: postgresql://flashcard:flashcard@postgres/flashcard
+      SIGNING_KEY: 498d492588ed0f17635e1ccc13de60a835f9e422fea6273f1b6d0b09ee00d14c
     build:
       context: api
       dockerfile: Dockerfile.dev
