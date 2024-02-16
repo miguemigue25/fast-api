@@ -1,18 +1,12 @@
 // SplashPage.tsx
-import React from 'react';
-import Splash from './Splash';
-// import Splash2 from './splash2.tsx';
-
+import React from "react";
+import Splash from "./components/ui/Splash.tsx";
 
 const SplashPage: React.FC = () => {
   return (
-    <>
-    
-    <Splash title="Welcome to Our Website" subtitle="Explore our services and discover amazing features." />
-    {/* <Splash2 /> */}
-    
-    </>
-      
+    <div>
+      <Splash />
+    </div>
   );
 };
 
