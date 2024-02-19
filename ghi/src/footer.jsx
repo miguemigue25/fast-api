@@ -15,7 +15,7 @@ const Footer = () => {
             </h1>
           </Link>
         </div>
-        <div className="text-contact text-color">
+        <div className="contact text-color">
           <div className="">
             <a href="/">Contact</a>
           </div>
