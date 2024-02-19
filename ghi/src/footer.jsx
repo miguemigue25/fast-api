@@ -11,12 +11,12 @@ const Footer = () => {
         <div>
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <h1 className="text-color">
-              Flashcard<span className="">Ai</span>
+              Flashcard<span className="primary">Ai</span>
             </h1>
           </Link>
         </div>
-        <div className="support-section">
-          <div className="support-links">
+        <div className="text-contact text-color">
+          <div className="">
             <a href="/">Contact</a>
           </div>
         </div>

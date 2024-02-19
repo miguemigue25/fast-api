@@ -1,7 +1,14 @@
 .footer-bg {
-  background-color: whitesmoke;
+  background: #6b7280; /* margin-top: -1rem;
+  margin-bottom: -1rem; */
 }
 
 .text-color {
-  color: black;
+  color: whitesmoke;
+  font-weight: bold;
+  margin: auto;
+}
+
+.contact {
+  padding-left: 40rem;
 }
