@@ -3,6 +3,7 @@ import "./hero.css";
 import logo from "./assets/logo.png";
 import { Link } from "react-router-dom";
 import Footer from "./footer";
+import HeroMiddle from "./HeroMiddle";
 export const Hero = () => {
   return (
     <div className="hero">
@@ -17,7 +18,7 @@ export const Hero = () => {
             Generate, save and log all your flashcard sessions with Flashcard Ai
           </p>
           <div className="input-container">
-            <Link to="timer">
+            <Link to="login">
               <button className="btn">Get Started</button>
             </Link>
           </div>
@@ -28,6 +29,7 @@ export const Hero = () => {
             <img src={logo} alt="" />
           </div>
         </div>
+        {/* <HeroMiddle /> */}
       </div>
       <div className="footer-padding">
         <Footer />
