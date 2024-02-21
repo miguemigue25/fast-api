@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Union, Optional
 from queries.pool import pool
+from authenticator import authenticator
 
 
 class UsersIn(BaseModel):
@@ -114,6 +115,8 @@ class UsersRepo:
             with pool.connection() as conn:
                 # get a cursor (something to run SQL with)
                 with conn.cursor() as db:
+                    # hash the new password
+                    hashed_password = authenticator.hash_password(user.password)
                     result = db.execute(
                         """
                         UPDATE users
@@ -123,7 +126,7 @@ class UsersRepo:
                         """,
                         [
                             user.username,
-                            user.password,
+                            hashed_password,
                             user_id
                         ],
                     )
