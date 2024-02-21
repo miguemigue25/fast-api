@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./navbar.jsx";
 import { Login } from "./Login";
 import FlashcardSetsTable from "./FlashcardSetTable";
+import FlashcardList from "./generate.jsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Hero />} />
           <Route path="/login" element={<Login />} />
           <Route path="/flashcards" element={<FlashcardSetsTable />} />
+          <Route path="/generate" element={<FlashcardList />} />
         </Routes>
       </BrowserRouter>
     </div>
