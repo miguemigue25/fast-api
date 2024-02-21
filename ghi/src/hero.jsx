@@ -1,6 +1,6 @@
 import React from "react";
 import "./hero.css";
-import logo from "./assets/logo.png";
+import logo from "./assets/hero.png";
 import { Link } from "react-router-dom";
 import Footer from "./footer";
 import HeroMiddle from "./HeroMiddle";
@@ -29,7 +29,7 @@ export const Hero = () => {
             <img src={logo} alt="" />
           </div>
         </div>
-        {/* <HeroMiddle /> */}
+        <HeroMiddle />
       </div>
       <div className="footer-padding">
         <Footer />

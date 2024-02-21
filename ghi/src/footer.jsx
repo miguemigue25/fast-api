@@ -3,6 +3,7 @@
 import React from "react";
 import "./footer.css";
 import { Link } from "react-router-dom";
+import logo from "./assets/logo.png";
 
 const Footer = () => {
   return (
@@ -21,6 +22,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      {/* <img src={logo} alt="Logo" className="logo-footer"></img> */}
     </div>
   );
 };

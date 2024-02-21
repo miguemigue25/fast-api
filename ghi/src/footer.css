@@ -6,9 +6,23 @@
 .text-color {
   color: whitesmoke;
   font-weight: bold;
-  margin: auto;
 }
 
 .contact {
   padding-left: 40rem;
 }
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+/* .logo-footer {
+  width: 3.5rem;
+  height: auto;
+  position: relative;
+  top: -5.5rem;
+  right: -5.5rem;
+} */

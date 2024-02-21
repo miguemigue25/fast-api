@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+// import logo from "./assets/logo.png";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -10,6 +11,7 @@ const Navbar = () => {
   return (
     <div className="header">
       <div className="container text-h1">
+        {/* <img src={logo} alt="Logo" className="logo"></img> */}
         <Link to="/">
           <h1>
             Flashcard<span className="primary">Ai</span>
