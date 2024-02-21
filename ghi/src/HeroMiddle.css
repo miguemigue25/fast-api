@@ -1,0 +1,68 @@
+/* .signup .container {
+  display: flex;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  padding: 30rem 1rem;
+  background-color: #6b7280;
+} */
+
+.signup .left {
+  text-align: center;
+}
+
+.signup img {
+  width: 300px;
+  border-radius: 15px;
+
+  padding: 4rem;
+}
+
+.signup img:hover {
+  transform: scale(1.1);
+  transition: 0.5s ease-in-out;
+}
+
+.signup .right p {
+  margin: 1rem;
+}
+
+.hero-timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 1rem -1rem; */
+  /* padding-left: 4px;
+  padding-right: 2px; */
+  background-color: #a5a7aa;
+  border-radius: 12px;
+  margin-top: 10rem;
+}
+
+.hero-timer-left {
+  text-align: center;
+  order: 2;
+}
+
+.hero-timer-img {
+  width: 200px;
+  border-radius: 15px;
+}
+
+.hero-timer-img:hover {
+  transform: scale(1.1);
+  transition: 0.5s ease-in-out;
+}
+
+.hero-timer-right {
+  order: 1;
+}
+
+.hero-timer-right p {
+  margin: 2rem 0;
+}
+@media screen and (max-width: 940px) {
+  .signup .container {
+    grid-template-columns: 1fr;
+  }
+}

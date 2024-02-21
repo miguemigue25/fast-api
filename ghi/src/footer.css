@@ -1,0 +1,28 @@
+.footer-bg {
+  background: #6b7280; /* margin-top: -1rem;
+  margin-bottom: -1rem; */
+}
+
+.text-color {
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+.contact {
+  padding-left: 40rem;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+/* .logo-footer {
+  width: 3.5rem;
+  height: auto;
+  position: relative;
+  top: -5.5rem;
+  right: -5.5rem;
+} */
