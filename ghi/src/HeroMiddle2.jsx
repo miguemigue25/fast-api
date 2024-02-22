@@ -2,20 +2,20 @@ import React from "react";
 import "./HeroMiddle.css";
 import { Link } from "react-router-dom";
 
-// import gif from "./assets/logo.png";
+// import logo from "./assets/logo.png";
 
-const HeroMiddle = () => {
+const HeroMiddle2 = () => {
   return (
     <div className="hero-timer-container">
       <div className="signup">
         <div className=" hero-timer-right hero-timer-left">
-          <Link to="login">
-            <h2>Signup to get started</h2>
-          </Link>
-          <div className="images-container"></div>
-          {/* <img src={gif} alt="" className="hero-timer-img" /> */}
+          <h2>Create flashcards</h2>
+          <div className="images-container">
+            {/* <img src={logo} alt="" className="hero-timer-img" /> */}
+          </div>
           <div className="bottom-text">
-            Signup now and start creating your flashcards now!
+            Generate your custom flashcards based on your natural language
+            prompt input.
           </div>
           <div className="input-container">
             {/* <Link to="login">
@@ -28,4 +28,4 @@ const HeroMiddle = () => {
   );
 };
 
-export default HeroMiddle;
+export default HeroMiddle2;

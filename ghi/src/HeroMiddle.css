@@ -12,7 +12,7 @@
 }
 
 .signup img {
-  width: 300px;
+  width: 20rem;
   border-radius: 15px;
 
   padding: 4rem;
@@ -23,7 +23,7 @@
   transition: 0.5s ease-in-out;
 }
 
-.signup .right p {
+.signup .right {
   margin: 1rem;
 }
 
@@ -31,17 +31,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding: 1rem -1rem; */
-  /* padding-left: 4px;
-  padding-right: 2px; */
-  background-color: #a5a7aa;
+  background-color: whitesmoke;
   border-radius: 12px;
-  margin-top: 10rem;
+  margin-top: 1rem;
+  margin-right: 2rem;
+  width: 50%;
+  max-width: 500px; /* Set a maximum width if necessary */
+  height: auto; /* Adjust the height as needed */
+  padding: 1rem; /* Add padding to space out the content */
+}
+
+.hero-middle-group-container {
+  display: flex;
+  justify-content: space-between; /* To evenly distribute the HeroMiddleGroup components */
+  margin-top: 2rem;
+  margin-right: -20rem; /* Add margin-top for spacing */
+}
+
+.hero-middle-card {
+  margin: 4rem;
 }
 
 .hero-timer-left {
   text-align: center;
   order: 2;
+  margin: 4rem;
 }
 
 .hero-timer-img {
@@ -54,12 +68,33 @@
   transition: 0.5s ease-in-out;
 }
 
+.bottom-text {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
 .hero-timer-right {
   order: 1;
 }
 
 .hero-timer-right p {
   margin: 2rem 0;
+}
+
+.images-container {
+  display: flex;
+}
+
+.hero-middle-group {
+  margin: -10rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 4rem;
+}
+
+.hero-timer-img {
+  width: 100px; /* Adjust the width of the images as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 64rem; /* Add margin between images */
 }
 @media screen and (max-width: 940px) {
   .signup .container {

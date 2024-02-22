@@ -1,0 +1,7 @@
+.margin-space {
+  display: flex;
+  margin: 4rem;
+  margin-top: -2rem;
+  margin-bottom: 10rem;
+  padding: 4rem;
+}

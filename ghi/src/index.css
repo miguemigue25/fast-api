@@ -29,7 +29,7 @@ a {
 }
 
 .container {
-  max-width: 1240px;
+  max-width: 1440px;
   margin: auto;
 }
 
@@ -53,6 +53,7 @@ h1 {
 h2 {
   font-size: 2.4rem;
   line-height: 1.2;
+  color: black;
 }
 
 h5 {
