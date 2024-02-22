@@ -12,10 +12,30 @@
 }
 
 .signup img {
-  width: 20rem;
-  border-radius: 15px;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 25px;
+  margin: auto;
+  padding: 3rem;
+  margin-top: 2.5rem;
+}
 
-  padding: 4rem;
+.create-middle img {
+  width: 30rem;
+  height: 30rem;
+  border-radius: 15px;
+  margin: auto;
+  margin-top: 1rem;
+  padding: 3rem;
+}
+
+.study-middle img {
+  width: 30rem;
+  height: 30rem;
+  border-radius: 15px;
+  margin: auto;
+  margin-top: -2rem;
+  padding: 3rem;
 }
 
 .signup img:hover {
@@ -91,11 +111,6 @@
   margin-left: 4rem;
 }
 
-.hero-timer-img {
-  width: 100px; /* Adjust the width of the images as needed */
-  height: auto; /* Maintain aspect ratio */
-  margin-right: 64rem; /* Add margin between images */
-}
 @media screen and (max-width: 940px) {
   .signup .container {
     grid-template-columns: 1fr;

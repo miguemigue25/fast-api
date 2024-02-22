@@ -2,8 +2,7 @@ import React from "react";
 import "./HeroMiddle.css";
 import { Link } from "react-router-dom";
 
-// import gif from "./assets/logo.png";
-
+import signup from "./assets/signup.png";
 const HeroMiddle = () => {
   return (
     <div className="hero-timer-container">
@@ -13,10 +12,10 @@ const HeroMiddle = () => {
             <h2>Signup to get started</h2>
           </Link>
           <div className="images-container"></div>
-          {/* <img src={gif} alt="" className="hero-timer-img" /> */}
           <div className="bottom-text">
             Signup now and start creating your flashcards now!
           </div>
+          <img src={signup} alt="" className="" />
           <div className="input-container">
             {/* <Link to="login">
               <button className="btn">Get Started</button>
