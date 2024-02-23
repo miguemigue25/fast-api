@@ -1,9 +1,9 @@
 import React from "react";
 import "./hero.css";
-import logo from "./assets/hero.png";
+import logo from "./assets/logo.png";
 import { Link } from "react-router-dom";
 import Footer from "./footer";
-import HeroMiddle from "./HeroMiddle";
+import HeroMiddleGroup from "./HeroMiddleGroup";
 export const Hero = () => {
   return (
     <div className="hero">
@@ -23,17 +23,11 @@ export const Hero = () => {
             </Link>
           </div>
         </div>
-
-        <div className="right">
-          <div className="img-container">
-            <img src={logo} alt="" />
-          </div>
-        </div>
-        <HeroMiddle />
+        <img src={logo} alt="" className="" />
       </div>
-      <div className="footer-padding">
+      {/* <div className="footer-padding">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };

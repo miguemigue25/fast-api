@@ -1,19 +1,23 @@
 .footer-bg {
   background: #6b7280; /* margin-top: -1rem;
   margin-bottom: -1rem; */
+  padding-bottom: 1rem;
 }
 
 .text-color {
   color: whitesmoke;
   font-weight: bold;
+  margin-top: -4rem;
+  padding-top: 1rem;
 }
 
 .contact {
-  padding-left: 40rem;
+  padding-left: 70rem;
+  padding-bottom: 1rem;
+  margin-left: 2rem;
 }
 
-.footer .container {
-  display: flex;
+.footer {
   justify-content: space-between;
   align-items: center;
   height: 100%;
