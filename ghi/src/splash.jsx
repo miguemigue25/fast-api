@@ -11,7 +11,7 @@ const Splash = () => {
   return (
     <div>
       <Hero />
-      <div className="margin-space">
+      <div className="margin-space splash-container">
         <HeroMiddle />
         <HeroMiddle2 />
         <HeroMiddle3 />

@@ -1,6 +1,6 @@
 import React from "react";
 import "./hero.css";
-import logo from "./assets/hero.png";
+import logo from "./assets/logo.png";
 import { Link } from "react-router-dom";
 import Footer from "./footer";
 import HeroMiddleGroup from "./HeroMiddleGroup";
@@ -23,17 +23,7 @@ export const Hero = () => {
             </Link>
           </div>
         </div>
-
-        <div className="right">
-          <div className="img-container">
-            <img src={logo} alt="" />
-          </div>
-        </div>
-        <div className="hero-middle-group-container">
-          {/* <HeroMiddleGroup /> */}
-          <div className="hero-middle-card">{/* <HeroMiddleGroup /> */}</div>
-          {/* <HeroMiddleGroup /> */}
-        </div>
+        <img src={logo} alt="" className="" />
       </div>
       {/* <div className="footer-padding">
         <Footer />

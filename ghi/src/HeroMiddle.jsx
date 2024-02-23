@@ -12,10 +12,10 @@ const HeroMiddle = () => {
             <h2>Signup to get started</h2>
           </Link>
           <div className="images-container"></div>
-          <div className="bottom-text">
-            Signup now and start creating your flashcards now!
-          </div>
           <img src={signup} alt="" className="" />
+          <div className="bottom-text">
+            Signup to start creating your flashcards now!
+          </div>
           <div className="input-container">
             {/* <Link to="login">
               <button className="btn">Get Started</button>

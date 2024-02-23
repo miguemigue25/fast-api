@@ -1,7 +1,24 @@
 .margin-space {
   display: flex;
-  margin: 4rem;
-  margin-top: -2rem;
-  margin-bottom: 10rem;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  margin-top: 8rem;
   padding: 4rem;
+  background-color: white;
+  clip-path: polygon(0 0, 100% 15%, 100% 100%, 0% 100%);
 }
+
+/* .splash-container {
+  max-width: 600px;
+  margin: 0 auto;
+} */
+
+/* @media screen and (max-width: 1240px) {
+  .margin-space {
+    margin: 2rem;
+    margin-top: -1rem;
+    margin-bottom: 6rem;
+    padding: 2rem;
+  }
+} */

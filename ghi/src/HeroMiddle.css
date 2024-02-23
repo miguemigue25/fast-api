@@ -1,44 +1,47 @@
-/* .signup .container {
+.signup .container {
   display: flex;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   align-items: center;
   padding: 30rem 1rem;
   background-color: #6b7280;
-} */
+  margin-left: 10rem;
+}
 
 .signup .left {
   text-align: center;
-}
-
-.signup img {
-  width: 30rem;
-  height: 30rem;
-  border-radius: 25px;
-  margin: auto;
-  padding: 3rem;
-  margin-top: 2.5rem;
+  margin-left: 10rem;
 }
 
 .create-middle img {
-  width: 30rem;
-  height: 30rem;
-  border-radius: 15px;
-  margin: auto;
-  margin-top: 1rem;
-  padding: 3rem;
+  width: 11.5rem;
+  height: auto;
+  border-radius: 25px;
+
+  padding-top: 1rem;
+  margin-top: 2rem;
 }
 
 .study-middle img {
-  width: 30rem;
-  height: 30rem;
-  border-radius: 15px;
-  margin: auto;
-  margin-top: -2rem;
-  padding: 3rem;
+  width: 18rem;
+  height: auto;
+  border-radius: 25px;
+
+  padding-top: -2rem;
+  margin-top: 2rem;
+}
+.signup img,
+.hero-timer-img {
+  width: 14rem;
+  height: auto;
+  border-radius: 25px;
+
+  padding-top: 2rem;
+  margin-top: 2rem;
 }
 
-.signup img:hover {
+.signup img:hover,
+.hero-timer-img:hover {
   transform: scale(1.1);
   transition: 0.5s ease-in-out;
 }
@@ -51,21 +54,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: whitesmoke;
+  background-color: white;
   border-radius: 12px;
-  margin-top: 1rem;
-  margin-right: 2rem;
+  margin-top: 12rem;
+  margin-right: 4rem;
+  margin-left: 4rem;
+  margin-bottom: 4rem;
   width: 50%;
-  max-width: 500px; /* Set a maximum width if necessary */
-  height: auto; /* Adjust the height as needed */
-  padding: 1rem; /* Add padding to space out the content */
+  max-width: 500px;
+  height: 400px;
+  padding-bottom: -2rem;
 }
 
 .hero-middle-group-container {
   display: flex;
-  justify-content: space-between; /* To evenly distribute the HeroMiddleGroup components */
+  justify-content: space-between;
   margin-top: 2rem;
-  margin-right: -20rem; /* Add margin-top for spacing */
+  margin-right: -30rem;
 }
 
 .hero-middle-card {
@@ -75,23 +80,15 @@
 .hero-timer-left {
   text-align: center;
   order: 2;
-  margin: 4rem;
-}
-
-.hero-timer-img {
-  width: 200px;
-  border-radius: 15px;
-}
-
-.hero-timer-img:hover {
-  transform: scale(1.1);
-  transition: 0.5s ease-in-out;
+  margin: 2rem;
+  margin-bottom: 2rem;
 }
 
 .bottom-text {
   margin-left: 2rem;
   margin-right: 2rem;
 }
+
 .hero-timer-right {
   order: 1;
 }
@@ -111,8 +108,41 @@
   margin-left: 4rem;
 }
 
+/* Media Queries */
 @media screen and (max-width: 940px) {
   .signup .container {
     grid-template-columns: 1fr;
+  }
+
+  .signup .left {
+    margin-left: 0; /* Reset margin for smaller screens */
+  }
+
+  .signup .right {
+    margin: 0; /* Reset margin for smaller screens */
+  }
+
+  .hero-timer-container {
+    width: 80%; /* Adjust container width for smaller screens */
+    margin-right: auto; /* Center container on smaller screens */
+    margin-left: auto; /* Center container on smaller screens */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .signup .container {
+    padding: 15rem 1rem; /* Adjust padding for smaller screens */
+    margin-left: 2rem; /* Adjust margin for smaller screens */
+  }
+
+  .signup img,
+  .create-middle img,
+  .study-middle img,
+  .hero-timer-img {
+    width: 7rem; /* Adjust image size for smaller screens */
+  }
+
+  .hero-middle-group {
+    margin-left: 2rem; /* Adjust margin for smaller screens */
   }
 }
