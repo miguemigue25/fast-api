@@ -54,11 +54,11 @@ const Navbar = () => {
             <button className="btn">SignUp</button>
           </Link>
         </div>
-        <li className="nav-item">
-          <Link className="nav-link" to="/login" onClick={logout}>
-            Logout
+        <div className="btn-group">
+          <Link className="nav-link " to="/login" onClick={logout}>
+            <button className="btn">Logout</button>
           </Link>
-        </li>
+        </div>
         <div className="hamburger" onClick={handleClick}>
           {click ? (
             <FaTimes size={20} style={{ color: "#333" }} />

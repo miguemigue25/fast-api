@@ -1,6 +1,7 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -12,7 +13,7 @@ const Login = () => {
     console.log(`username: ${username} password: ${password}`);
     login(username, password);
     e.target.reset();
-    navigate("/profile");
+    navigate("/generate");
   };
   return (
     <div className="card text-bg-light mb-3">
