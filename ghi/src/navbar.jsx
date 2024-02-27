@@ -5,23 +5,19 @@ function Nav() {
   const { token, logout } = useToken();
   const isAuthenticated = !!token;
   return (
-    <>
-      <nav className="navbar navbar-expand-lg navbar-dark nav-bg">
-        <div className="">
-          <NavLink className="navbar-brand" to="/"></NavLink>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+    <div className="header">
+      <nav className="nav-menu">
+        <div className="container">
+          <NavLink to="/">
+            <div>
+              <h1 className="">
+                Flashcard<span className="primary">Ai</span>
+              </h1>
+            </div>
+          </NavLink>
+          <NavLink to="/"></NavLink>
           <div className="collapse navbar-collapse links" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul>
               {isAuthenticated ? (
                 <>
                   <li className="nav-item">
@@ -30,28 +26,25 @@ function Nav() {
                     </NavLink>
                   </li>
                   <li className="nav-item link-spacing">
-                    <NavLink className="nav-link text-success" to="/game">
-                      Code with me
+                    <NavLink className="nav-link text-success" to="/generate">
+                      Generate
                     </NavLink>
                   </li>
-                  <li className="nav-item link-spacing">
+                  {/* <li className="nav-item link-spacing">
                     <NavLink className="nav-link text-primary" to="/profile">
                       Profile
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li className="nav-item link-spacing">
-                    <NavLink
-                      className="nav-link text-danger"
-                      to="/employer/search"
-                    >
-                      Employer Search
+                    <NavLink className="nav-link text-danger" to="/flashcards">
+                      My Flashcards
                     </NavLink>
                   </li>
-                  <li className="nav-item link-spacing">
+                  {/* <li className="nav-item link-spacing">
                     <NavLink className="nav-link text-warning" to="/update">
                       Update Account
                     </NavLink>
-                  </li>
+                  </li> */}
                   <li className="nav-item link-spacing">
                     <NavLink className="nav-link" to="/" onClick={logout}>
                       Logout
@@ -60,8 +53,8 @@ function Nav() {
                 </>
               ) : (
                 <>
-                  <li className="nav-item link-spacing">
-                    <NavLink className="nav-link text-warning" to="/token">
+                  <li className="">
+                    <NavLink className="nav-link text-warning" to="/login">
                       Login
                     </NavLink>
                   </li>
@@ -76,7 +69,7 @@ function Nav() {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 }
 export default Nav;
