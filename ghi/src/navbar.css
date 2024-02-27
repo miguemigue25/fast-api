@@ -33,11 +33,19 @@ h1 {
   display: flex;
 } */
 
+.nav-menu ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+}
+
 .nav-menu li {
   padding: 0 1rem;
 }
 
 .nav-menu a {
+  display: flex;
   font-size: 1rem;
   font-weight: 600;
   color: white;

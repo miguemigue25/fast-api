@@ -16,7 +16,7 @@ function Nav() {
             </div>
           </NavLink>
           <NavLink to="/"></NavLink>
-          <div className="collapse navbar-collapse links" id="navbarNav">
+          <div className="nav-menu" id="navbarNav">
             <ul>
               {isAuthenticated ? (
                 <>
