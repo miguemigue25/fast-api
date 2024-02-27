@@ -1,0 +1,236 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: black;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.nav-logo-img {
+  max-width: 100px;
+}
+.nav-wordlogo-img {
+  max-width: 160px;
+}
+.nav-bg {
+  background: black;
+  text-align: center;
+}
+.bg {
+  background: black;
+  border: 1px solid #3ffe49;
+  color: #f2fe3f;
+}
+body {
+  font-family: "Fira Code", monospace;
+  color: white;
+  text-align: center;
+}
+.card-color {
+  background: black;
+}
+.cardbody {
+  text-align: center;
+  background: black;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-color {
+  background-color: #f2fe3f;
+}
+.centerthings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  padding-top: 50px;
+}
+.container-fluid {
+  padding-top: 10px;
+}
+.links {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px;
+}
+.color-yellow {
+  color: rgb(227, 238, 154);
+}
+.color-green {
+  color: #3ffe49;
+}
+.color-orange {
+  color: rgb(247, 189, 147);
+}
+.color-blue {
+  color: rgb(147, 222, 247);
+  border: 1px solid rgb(147, 222, 247);
+}
+.color-red {
+  color: rgb(233, 103, 142);
+}
+.button-spacing {
+  padding: 20px;
+}
+.title-spacing {
+  padding-bottom: 25px;
+}
+.link-spacing {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.font-size-20 {
+  font-size: 25px;
+}
+.color-blue-1 {
+  color: rgb(147, 222, 247);
+}
+.font-size {
+  font-size: 18px;
+}
+.question-spacing {
+  padding: 10px;
+}
+.question-styling {
+  color: rgb(250, 250, 191);
+  border: 1px solid rgb(250, 250, 191);
+}
+.color-light-green {
+  color: rgb(118, 231, 204);
+}
+.color-white {
+  color: white;
+}
+
+/* @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --primary: #ff6600;
+  --background: #f5f8ff;
+}
+
+body {
+  background-color: #e5e7eb;
+  overflow-x: hidden;
+}
+
+.primary {
+  color: var(--primary);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.container {
+  max-width: 1240px;
+  margin: auto;
+}
+
+body {
+  font-family: "Poppins", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+h1 {
+  font-size: 3.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  color: black;
+}
+
+h5 {
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+.btn {
+  padding: 14px 32px;
+  border: 3px solid black;
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 24px 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn:hover {
+  box-shadow: rgb(0 0 0 / 15%) 0px 8px 24px;
+}
+
+input {
+  padding: 12px 32px;
+  border: 1px solid var(--primary);
+  background: transparent;
+  border-radius: 24px 4px;
+  font-size: 1rem;
+  margin-right: 0.8rem;
+  font-family: "Poppins", sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2.1rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  h5 {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  input {
+    width: 100%;
+  }
+} */
