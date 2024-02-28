@@ -1,6 +1,7 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -15,30 +16,34 @@ const Login = () => {
     navigate("/generate");
   };
   return (
-    <div className="card text-bg-light mb-3">
-      <h5 className="card-header">Login</h5>
-      <div className="card-body">
+    <div className="auth-container">
+      <h5 className="auth-title">Login</h5>
+      <div className="auth-form auth-form-group">
         <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="mb-3">
+          <div>
             <label className="form-label">Username:</label>
             <input
               name="username"
               type="text"
-              className="form-control"
+              className="auth-form-group input"
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          <div className="mb-3">
+          <div>
             <label className="form-label">Password:</label>
             <input
               name="password"
               type="password"
-              className="form-control"
+              className="auth-form-group input"
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div>
-            <input className="btn btn-primary" type="submit" value="Login" />
+          <div className="auth-form-group button:hover">
+            <input
+              className="auth-form-group button"
+              type="submit"
+              value="Login"
+            />
           </div>
         </form>
       </div>

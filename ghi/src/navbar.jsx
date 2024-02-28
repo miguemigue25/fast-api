@@ -38,7 +38,9 @@ function Nav() {
                 <Link to="/flashcards">Flashcards</Link>
               </li>
               <li>
-                <Link to="/" onClick={logout}>Logout</Link>
+                <Link to="/" onClick={logout}>
+                  Logout
+                </Link>
               </li>
             </>
           ) : (
