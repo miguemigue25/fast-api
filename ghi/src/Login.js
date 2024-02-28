@@ -12,7 +12,7 @@ const Login = () => {
     console.log(`username: ${username} password: ${password}`);
     login(username, password);
     e.target.reset();
-    navigate("/profile");
+    navigate("/generate");
   };
   return (
     <div className="card text-bg-light mb-3">

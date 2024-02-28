@@ -1,84 +1,62 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import "./navbar.css";
+import React, { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+
 function Nav() {
   const { token, logout } = useToken();
   const isAuthenticated = !!token;
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
+
   return (
-    <>
-      <nav className="navbar navbar-expand-lg navbar-dark nav-bg">
-        <div className="">
-          <NavLink className="navbar-brand" to="/"></NavLink>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse links" id="navbarNav">
-            <ul className="navbar-nav">
-              {isAuthenticated ? (
-                <>
-                  <li className="nav-item">
-                    <NavLink className="nav-link text-info" to="/">
-                      Home
-                    </NavLink>
-                  </li>
-                  <li className="nav-item link-spacing">
-                    <NavLink className="nav-link text-success" to="/game">
-                      Code with me
-                    </NavLink>
-                  </li>
-                  <li className="nav-item link-spacing">
-                    <NavLink className="nav-link text-primary" to="/profile">
-                      Profile
-                    </NavLink>
-                  </li>
-                  <li className="nav-item link-spacing">
-                    <NavLink
-                      className="nav-link text-danger"
-                      to="/employer/search"
-                    >
-                      Employer Search
-                    </NavLink>
-                  </li>
-                  <li className="nav-item link-spacing">
-                    <NavLink className="nav-link text-warning" to="/update">
-                      Update Account
-                    </NavLink>
-                  </li>
-                  <li className="nav-item link-spacing">
-                    <NavLink className="nav-link" to="/" onClick={logout}>
-                      Logout
-                    </NavLink>
-                  </li>
-                </>
-              ) : (
-                <>
-                  <li className="nav-item link-spacing">
-                    <NavLink className="nav-link text-warning" to="/token">
-                      Login
-                    </NavLink>
-                  </li>
-                  <li className="nav-item link-spacing">
-                    <NavLink className="nav-link text-info" to="/signup">
-                      Sign up
-                    </NavLink>
-                  </li>
-                </>
-              )}
-            </ul>
-          </div>
+    <nav className="header">
+      <div className="container text-h1">
+        <Link to="/">
+          <h1>
+            Flashcard<span className="primary">Ai</span>
+          </h1>
+        </Link>
+        <div className="hamburger" onClick={handleClick}>
+          {click ? (
+            <FaTimes size={20} style={{ color: "#333" }} />
+          ) : (
+            <FaBars size={20} style={{ color: "#333" }} />
+          )}
         </div>
-      </nav>
-    </>
+        <ul className={click ? "nav-menu active" : "nav-menu"}>
+          {isAuthenticated ? (
+            <>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/generate">Generate</Link>
+              </li>
+              <li>
+                <Link to="/flashcards">Flashcards</Link>
+              </li>
+              <li>
+                <Link to="/" onClick={logout}>Logout</Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/signup">Sign up</Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </div>
+    </nav>
   );
 }
+
 export default Nav;
 
 // import React, { useState, useEffect } from "react";
