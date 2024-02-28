@@ -17,7 +17,7 @@
 }
 
 .nav-bg {
-  background-color: gray;
+  background-color: grey
 }
 
 h1 {
@@ -48,7 +48,6 @@ h1 {
   display: flex;
   font-size: 1rem;
   font-weight: 600;
-  color: white;
 }
 
 .logo {
@@ -56,10 +55,10 @@ h1 {
   height: auto;
 }
 
-/* .hamburger {
+.hamburger {
+  margin-left: auto;
   display: none;
-  cursor: pointer;
-} */
+}
 
 @media screen and (max-width: 1240px) {
   .hamburger {
@@ -67,14 +66,16 @@ h1 {
   }
 
   .nav-menu {
+    display: flex;
     position: absolute;
     flex-direction: column;
-    justify-content: start;
+    text-align: center;
+    justify-content: center;
     top: 90px;
     right: -100%;
-    width: 50%;
-    height: 100vh;
-    transition: 0.4s;
+    width: 30%;
+    height: 32vh;
+    transition: 0.8s;
     z-index: 2;
     background: black;
     border-left: 1px solid #eee;
@@ -87,7 +88,7 @@ h1 {
   .nav-menu li {
     padding: 1rem;
     width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: none;
   }
 
   .nav-menu a {
@@ -95,18 +96,20 @@ h1 {
   }
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .hamburger {
     display: none;
   }
-}
+} */
 
 @media screen and (max-width: 767px) {
   .nav-menu {
-    display: none;
+    display: flex;
+    background: black;
   }
 
   .nav-menu.active {
-    display: block;
+    display: flex;
+    background: black;
   }
 }
