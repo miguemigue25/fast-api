@@ -104,7 +104,7 @@ const FlashcardList = () => {
             Back
           </button>
           <button
-            onClick={goToNextCard}
+            onClick={goToPrevCard}
             style={{
               backgroundColor: "white",
               color: "black",

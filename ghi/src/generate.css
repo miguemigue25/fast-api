@@ -19,6 +19,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   cursor: pointer;
+  z-index: 1;
 }
 
 .flashcard:hover {
@@ -44,6 +45,7 @@
   border-radius: 5px;
   cursor: pointer;
   margin: 2rem;
+  z-index: 1;
 }
 
 .navigation-buttons button:hover {
@@ -56,6 +58,7 @@
   border: 1px solid #ccc; /* Gray border */
   border-radius: 5px;
   box-sizing: border-box; /* Include padding in width */
+  z-index: 1;
 }
 
 .subject-input input[type="text"]:focus {
@@ -84,6 +87,7 @@
   border: 2px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .create-subject-button:hover {
