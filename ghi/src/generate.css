@@ -5,6 +5,7 @@
   align-items: center; /* Center horizontally */
   justify-content: center; /* Center vertically */
   height: 100vh; /* Adjust the height as needed */
+  padding-top: 4rem;
 }
 
 .flashcard {
@@ -59,7 +60,7 @@
 
 .subject-input input[type="text"]:focus {
   outline: none; /* Remove default focus outline */
-  border-color: #007bff; /* Blue border color when focused */
+  border-color: #ff6600; /* Blue border color when focused */
 }
 
 .subject-input button {
@@ -80,7 +81,7 @@
   margin: 2rem;
   background-color: white; /* Green color */
   color: black; /* White text */
-  border: none;
+  border: 2px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
 }

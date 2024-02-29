@@ -61,7 +61,7 @@ const FlashcardList = () => {
           style={{
             backgroundColor: "white",
             color: "black",
-            border: "none",
+            border: "solid 1px",
             borderRadius: "5px",
             padding: "10px 20px",
             cursor: "pointer",
@@ -85,14 +85,13 @@ const FlashcardList = () => {
       <div className="navigation-buttons">
         <div className="">
           <button
-            onClick={goToPrevCard}
+            onClick={goToNextCard}
             style={{
-              backgroundColor: "whitesmoke",
+              backgroundColor: "white",
               color: "black",
-              border: "solid 2px",
+              border: "1px solid",
               borderRadius: "5px",
               padding: "20px",
-              // marginLeft: "1rem",
               cursor: "pointer",
             }}
             onMouseEnter={(e) => {
@@ -107,9 +106,9 @@ const FlashcardList = () => {
           <button
             onClick={goToNextCard}
             style={{
-              backgroundColor: "whitesmoke",
+              backgroundColor: "white",
               color: "black",
-              border: "solid 2px",
+              border: "1px solid",
               borderRadius: "5px",
               padding: "20px",
               cursor: "pointer",
