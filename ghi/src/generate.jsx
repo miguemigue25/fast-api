@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./generate.css";
 
 const flashcardsData = [
@@ -11,17 +11,11 @@ const flashcardsData = [
 ];
 
 const Flashcard = ({ question, answer }) => {
-  const [isAnswerShown, setIsAnswerShown] = React.useState(false);
+  const [isAnswerShown, setIsAnswerShown] = useState(false);
 
   const toggleAnswer = () => {
-    console.log("Toggling answer");
     setIsAnswerShown(!isAnswerShown);
-    console.log("isAnswerShown:", isAnswerShown);
   };
-
-  React.useEffect(() => {
-    console.log("isAnswerShown:", isAnswerShown);
-  }, [isAnswerShown]);
 
   return (
     <div className="flashcard" onClick={toggleAnswer}>
@@ -32,15 +26,105 @@ const Flashcard = ({ question, answer }) => {
 };
 
 const FlashcardList = () => {
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [newSubject, setNewSubject] = useState("");
+
+  const goToNextCard = () => {
+    setCurrentCardIndex((prevIndex) =>
+      prevIndex === flashcardsData.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const goToPrevCard = () => {
+    setCurrentCardIndex((prevIndex) =>
+      prevIndex === 0 ? flashcardsData.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleSubjectSubmit = () => {
+    console.log("new subject", newSubject);
+    setNewSubject("");
+  };
+
   return (
-    <div className="flashcard-container">
-      {flashcardsData.map((flashcard, index) => (
-        <Flashcard
-          key={index}
-          question={flashcard.question}
-          answer={flashcard.answer}
-        />
-      ))}
+    <div className="flashcard-container subject-input">
+      <input
+        type="text"
+        placeholder="Enter new subject"
+        value={newSubject}
+        onChange={(e) => setNewSubject(e.target.value)}
+      />
+      <div>
+        <button
+          className="create-subject-button"
+          onClick={handleSubjectSubmit}
+          style={{
+            backgroundColor: "white",
+            color: "black",
+            border: "none",
+            borderRadius: "5px",
+            padding: "10px 20px",
+            cursor: "pointer",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#ff6600";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "white";
+            e.target.style.color = "black";
+          }}
+        >
+          Create Subject
+        </button>
+      </div>
+      <Flashcard
+        question={flashcardsData[currentCardIndex].question}
+        answer={flashcardsData[currentCardIndex].answer}
+      />
+      <div className="navigation-buttons">
+        <div className="">
+          <button
+            onClick={goToPrevCard}
+            style={{
+              backgroundColor: "whitesmoke",
+              color: "black",
+              border: "solid 2px",
+              borderRadius: "5px",
+              padding: "20px",
+              // marginLeft: "1rem",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#ff6600";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "whitesmoke";
+            }}
+          >
+            Back
+          </button>
+          <button
+            onClick={goToNextCard}
+            style={{
+              backgroundColor: "whitesmoke",
+              color: "black",
+              border: "solid 2px",
+              borderRadius: "5px",
+              padding: "20px",
+              cursor: "pointer",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = "#ff6600";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = "whitesmoke";
+            }}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

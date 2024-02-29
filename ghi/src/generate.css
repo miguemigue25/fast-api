@@ -1,11 +1,19 @@
+/* Centering all elements */
+.flashcard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  height: 100vh; /* Adjust the height as needed */
+}
+
 .flashcard {
   width: 300px;
-  height: 200px;
+  height: 400px;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
-  margin: 40px;
-  margin-top: 16rem;
+  padding-top: 20px;
   background-color: #f8f8f8;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
@@ -19,6 +27,7 @@
 .question {
   font-weight: bold;
   margin-bottom: 10px;
+  padding-top: 4rem;
 }
 
 .answer {
@@ -27,8 +36,56 @@
   margin: 2rem;
 }
 
-.flashcard-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.navigation-buttons button {
+  background-color: white; /* Green color */
+  color: black; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 2rem;
+}
+
+.navigation-buttons button:hover {
+  background-color: #ff6600;
+}
+
+.subject-input input[type="text"] {
+  padding: 10px;
+  width: 300px; /* Adjust width as needed */
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.subject-input input[type="text"]:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #007bff; /* Blue border color when focused */
+}
+
+.subject-input button {
+  padding: 10px 20px;
+  background-color: black; /* Blue color */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.subject-input button:hover {
+  background-color: black; /* Darker blue color on hover */
+}
+
+.create-subject-button {
+  padding: 10px 20px;
+  margin: 2rem;
+  background-color: white; /* Green color */
+  color: black; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-subject-button:hover {
+  background-color: #ff6600;
+  color: white;
 }
