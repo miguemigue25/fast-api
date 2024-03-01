@@ -17,7 +17,7 @@
 }
 
 .nav-bg {
-  background-color: grey
+  background-color: grey;
 }
 
 h1 {
@@ -29,19 +29,23 @@ h1 {
   color: var(--primary);
 }
 
-/* .nav-menu {
+.nav-menu {
   display: flex;
-} */
+  align-items: center;
+  text-align: center;
+}
 
 .nav-menu ul {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   list-style: none; /* Remove default list styles */
   padding: 0; /* Remove default padding */
 }
 
 .nav-menu li {
   padding: 0 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-menu a {
