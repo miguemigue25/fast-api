@@ -20,7 +20,16 @@ steps = [
             response_id SERIAL PRIMARY KEY NOT NULL,
             user_id INT REFERENCES users(user_id),
             subject VARCHAR(30) NOT NULL UNIQUE,
-            response_text VARCHAR(250) NOT NULL,
+            response_one VARCHAR(250) NOT NULL,
+            response_two VARCHAR(250) NOT NULL,
+            response_three VARCHAR(250) NOT NULL,
+            response_four VARCHAR(250) NOT NULL,
+            response_five VARCHAR(250) NOT NULL,
+            response_six VARCHAR(250) NOT NULL,
+            response_seven VARCHAR(250) NOT NULL,
+            response_eight VARCHAR(250) NOT NULL,
+            response_nine VARCHAR(250) NOT NULL,
+            response_ten VARCHAR(250) NOT NULL,
             additional_info VARCHAR(250),
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(user_id)
@@ -63,6 +72,7 @@ steps = [
         """
     ]
 ]
+
 
 
 

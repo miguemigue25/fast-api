@@ -1,129 +1,160 @@
-# from pydantic import BaseModel
-# from typing import List, Union, Optional
-# from queries.pool import pool
-# from datetime import datetime
-# # from openai import create_flashcard_set
-
-# class Response(BaseModel):
-#     question: str
-#     answer: str
-
-# class ResponseText(BaseModel):
-#     response_one: str
-#     response_two: str
-#     response_three: str
-#     response_four: str
-#     response_five: str
-#     response_six: str
-#     response_seven: str 
-#     response_eight: str
-#     response_nine: str
-#     response_ten: str
+from pydantic import BaseModel
+from typing import List, Union, Optional
+from queries.pool import pool
+from datetime import datetime
 
 
-# class ResponsesIn(BaseModel):
-#     subject: str
-
-
-# class ResponsesOut(BaseModel):
-#     response_id: int
-#     user_id: int
-#     subject: str
-#     response_text: ResponseText
-#     additional_info: Optional[str]
-#     created_at: datetime
+class ResponsesIn(BaseModel):
+    subject: str
+    response_one: str
+    response_two: str
+    response_three: str
+    response_four: str
+    response_five: str
+    response_six: str
+    response_seven: str 
+    response_eight: str
+    response_nine: str
+    response_ten: str
+    additional_info: Optional[str]
     
-#     class timeConfig:
-#         json_encoders = {
-#             datetime: lambda dt: dt.time('%m/%d/%Y %H:%M:%S')
-#         }
 
 
-# class Error(BaseModel):
-#     message: str
+class ResponsesOut(BaseModel):
+    response_id: int
+    user_id: int
+    subject: str
+    response_one: str
+    response_two: str
+    response_three: str
+    response_four: str
+    response_five: str
+    response_six: str
+    response_seven: str 
+    response_eight: str
+    response_nine: str
+    response_ten: str
+    additional_info: Optional[str]
+    created_at: datetime
+    
+    class timeConfig:
+        json_encoders = {
+            datetime: lambda dt: dt.time('%m/%d/%Y %H:%M:%S')
+        }
 
 
-# class CreateResponseError(ValueError):
-#     pass
+class Error(BaseModel):
+    message: str
 
 
-# class ResponseRepository:
-#     def create_response(self, responses: ResponsesIn, user_id: int) -> Union[ResponsesOut, Error]:
-#         with pool.connection() as conn:
-#             with conn.cursor() as db:
-#                 try:
-#                     # Use the OpenAI function to generate flashcards
-#                     # flashcards = create_flashcard_set(responses.subject)
+class CreateResponseError(ValueError):
+    pass
 
-#                     # Insert a new row into chat_responses
-#                     db.execute(
-#                         """
-#                         INSERT INTO chat_responses
-#                             (user_id, subject, created_at)
-#                         VALUES
-#                             (%s, %s, %s)
-#                         RETURNING response_id, user_id, subject, additional_info, created_at;
-#                         """,
-#                         (
-#                             user_id,
-#                             responses.subject,
-#                             datetime.now(),
-#                         )
-#                     )
 
-#                     # Fetch the inserted row
-#                     inserted_row = db.fetchone()
+class ResponseRepository:
+    def create_response(self, responses: ResponsesIn, user_id: int) -> Union[ResponsesOut, Error]:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                try:
+                    # Insert a new row into chat_responses
+                    db.execute(
+                        """
+                        INSERT INTO chat_responses
+                            (user_id, subject, response_one, response_two, response_three, response_four,
+                            response_five, response_six, response_seven, response_eight, response_nine,
+                            response_ten, additional_info, created_at)
+                        VALUES
+                            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        RETURNING response_id, user_id, subject, response_one, response_two, response_three,
+                                  response_four, response_five, response_six, response_seven, response_eight,
+                                  response_nine, response_ten, additional_info, created_at;
+                        """,
+                        (
+                            user_id,
+                            responses.subject,
+                            responses.response_one,
+                            responses.response_two,
+                            responses.response_three,
+                            responses.response_four,
+                            responses.response_five,
+                            responses.response_six,
+                            responses.response_seven,
+                            responses.response_eight,
+                            responses.response_nine,
+                            responses.response_ten,
+                            responses.additional_info,
+                            datetime.now(),
+                        )
+                    )
 
-#                     # If the row is fetched successfully, construct ResponsesOut object
-#                     if inserted_row:
-#                         response_out = ResponsesOut(
-#                             response_id=inserted_row[0],
-#                             user_id=inserted_row[1],
-#                             subject=inserted_row[2],
-#                             response_text=ResponseText(
-#                                 # response_one=flashcards[0],
-#                                 # response_two=flashcards[1],
-#                                 # response_three=flashcards[2],
-#                                 # response_four=flashcards[3],
-#                                 # response_five=flashcards[4],
-#                                 # response_six=flashcards[5],
-#                                 # response_seven=flashcards[6],
-#                                 # response_eight=flashcards[7],
-#                                 # response_nine=flashcards[8],
-#                                 # response_ten=flashcards[9],
-#                             ),
-#                             additional_info=inserted_row[3],
-#                             created_at=inserted_row[4]
-#                         )
-#                         return response_out
-#                     else:
-#                         # Handle the case where fetching the inserted row fails
-#                         return Error(message="Failed to fetch inserted row")
+                    # Fetch the inserted row
+                    inserted_row = db.fetchone()
 
-#                 except Exception as e:
-#                     # Handle database errors and return an Error object
-#                     return Error(message=str(e))
-                
+                    # If the row is fetched successfully, construct ResponsesOut object
+                    if inserted_row:
+                        response_out = ResponsesOut(
+                            response_id=inserted_row[0],
+                            user_id=inserted_row[1],
+                            subject=inserted_row[2],
+                            response_one=inserted_row[3],
+                            response_two=inserted_row[4],
+                            response_three=inserted_row[5],
+                            response_four=inserted_row[6],
+                            response_five=inserted_row[7],
+                            response_six=inserted_row[8],
+                            response_seven=inserted_row[9],
+                            response_eight=inserted_row[10],
+                            response_nine=inserted_row[11],
+                            response_ten=inserted_row[12],
+                            additional_info=inserted_row[13],
+                            created_at=inserted_row[14]
+                        )
+                        return response_out
+                    else:
+                        # Handle the case where fetching the inserted row fails
+                        return Error(message="Failed to fetch inserted row")
 
-                # result = db.execute(
-                #     """"
-                #     INSERT INTO chat_responses
-                #         (user_id, subject, response_text, additional_info, created_at)
-                #     VALUES
-                #         (%s, %s, %s, %s, %s)
-                #     RETURNING (response_id, user_id, subject, response_text, additional_info, created_at);
-                #     """,
-                #     [
-                #         responses.response_id,
-                #         responses.user_id,
-                #         responses.subject,
-                #         responses.response_text.dict(),
-                #         responses.additional_info,
-                #         responses.created_at,
-                #     ]
-                # )
-                # responses_id = result.fetchone()[0]
-                # old_data = responses.dict()
-                # return ResponsesOut(
-                #     responses_id=responses_id, **old_data
-                # )
+                except Exception as e:
+                    # Handle database errors and return an Error object
+                    return Error(message=str(e))
+    
+    def get_all_responses(self) -> Union[List[ResponsesOut], Error]:
+        try:
+            # connect the database
+            with pool.connection() as conn:
+                # get a cursor (something to run SQL with)
+                with conn.cursor() as db:
+                    # run our SELECT statement
+                    result = db.execute(
+                        """
+                        SELECT response_id, user_id, subject, response_one, response_two, response_three,
+                            response_four, response_five, response_six, response_seven, response_eight,
+                            response_nine, response_ten, additional_info, created_at
+                        FROM chat_responses
+                        ORDER BY user_id;
+                        """
+                    )
+                    result = []
+                    for record in db:
+                        responses = ResponsesOut(
+                            response_id=record[0],
+                            user_id=record[1],
+                            subject=record[2],
+                            response_one=record[3],
+                            response_two=record[4],
+                            response_three=record[5],
+                            response_four=record[6],
+                            response_five=record[7],
+                            response_six=record[8],
+                            response_seven=record[9],
+                            response_eight=record[10],
+                            response_nine=record[11],
+                            response_ten=record[12],
+                            additional_info=record[13],
+                            created_at=record[14]
+                        )
+                        result.append(responses)
+                    return result
+        except Exception as e:
+            print(e)
+            return {"message": "Could not get all responses"}
