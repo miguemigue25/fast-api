@@ -17,6 +17,12 @@ from queries.chat_responses import (
     CreateResponseError
 )
 
+from dotenv import load_dotenv
+import openai
+import os
+
+load_dotenv()
+
 
 class HttpError(BaseModel):
     detail: str
@@ -24,6 +30,7 @@ class HttpError(BaseModel):
 
 router = APIRouter()
 
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 @router.post("/responses", response_model=ResponsesOut | HttpError)
 async def create_response(
@@ -50,3 +57,21 @@ def get_all_responses(
 ):
 
     return repo.get_all_responses()
+
+
+@router.post("/generate_flashcards/", response_model=list[str])
+async def generate_flashcards(topic: str):
+    try:
+        # Make a call to the OpenAI API to generate flashcards
+        client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": f"Create flashcards on the topic: {topic}. Each flashcard should cover a key concept or term related to this topic."},
+                {"role": "user", "content": "Generate flashcards."}
+            ]
+        )
+        flashcards = [choice.message.content for choice in completion.choices]
+        return flashcards
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

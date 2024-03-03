@@ -18,8 +18,8 @@ app.add_middleware(
 
 app.include_router(authenticator.router)
 app.include_router(user_routers.router)
-app.include_router(response_routers.router)
-# app.include_router(flashcard_router.router)
+# app.include_router(response_routers.router)
+app.include_router(response_routers.router, prefix="/api")
 
 @app.get("/api/launch-details")
 def launch_details():
