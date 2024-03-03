@@ -27,6 +27,13 @@ load_dotenv()
 class HttpError(BaseModel):
     detail: str
 
+class FlashcardItem(BaseModel):
+    question: str
+    answer: str
+
+class FlashcardsResponse(BaseModel):
+    flashcards: List[FlashcardItem]
+
 
 router = APIRouter()
 
@@ -59,10 +66,11 @@ def get_all_responses(
     return repo.get_all_responses()
 
 
-@router.post("/generate_flashcards/", response_model=list[str])
+@router.post("/generate_flashcards/", response_model=Union[FlashcardsResponse, HttpError])
 async def generate_flashcards(topic: str):
     try:
         # Make a call to the OpenAI API to generate flashcards
+        print("Topic:", topic)  # Log the topic received
         client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
@@ -71,7 +79,21 @@ async def generate_flashcards(topic: str):
                 {"role": "user", "content": "Generate flashcards."}
             ]
         )
-        flashcards = [choice.message.content for choice in completion.choices]
-        return flashcards
+        print("Completion:", completion)  # Log the completion response
+        flashcards = []
+        for choice in completion.choices:
+            # Splitting content into flashcards
+            flashcard_texts = choice.message.content.split('\n\n')
+            for flashcard_text in flashcard_texts:
+                # Splitting each flashcard into term and definition
+                flashcard_parts = flashcard_text.split('\n')
+                if len(flashcard_parts) == 2:
+                    term = flashcard_parts[0].split(': ')[1]
+                    definition = flashcard_parts[1].split(': ')[1]
+                    flashcards.append(FlashcardItem(question=term, answer=definition))
+        return FlashcardsResponse(flashcards=flashcards)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        # Log the error for debugging purposes
+        print(f"Error occurred: {e}")
+        # Return an HTTPError with appropriate detail
+        return HttpError(detail="Internal Server Error")
