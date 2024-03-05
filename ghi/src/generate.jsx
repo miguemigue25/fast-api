@@ -1,14 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./generate.css";
-
-const flashcardsData = [
-  { question: "What is the capital of France?", answer: "Paris" },
-  {
-    question: "What is the largest planet in our solar system?",
-    answer: "Jupiter",
-  },
-  { question: "What is the powerhouse of the cell?", answer: "Mitochondria" },
-];
 
 const Flashcard = ({ question, answer }) => {
   const [isAnswerShown, setIsAnswerShown] = useState(false);
@@ -26,24 +17,65 @@ const Flashcard = ({ question, answer }) => {
 };
 
 const FlashcardList = () => {
+  const [flashcards, setFlashcards] = useState([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [newSubject, setNewSubject] = useState("");
 
+  useEffect(() => {
+    // Fetch flashcards from API when component mounts
+    fetchFlashcards();
+  }, []);
+
+  const fetchFlashcards = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/generate_flashcards/?topic=${newSubject}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch flashcards");
+      }
+      const data = await response.json();
+      setFlashcards(data.flashcards);
+    } catch (error) {
+      console.error("Error fetching flashcards:", error);
+    }
+  };
+
   const goToNextCard = () => {
     setCurrentCardIndex((prevIndex) =>
-      prevIndex === flashcardsData.length - 1 ? 0 : prevIndex + 1
+      prevIndex === flashcards.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const goToPrevCard = () => {
     setCurrentCardIndex((prevIndex) =>
-      prevIndex === 0 ? flashcardsData.length - 1 : prevIndex - 1
+      prevIndex === 0 ? flashcards.length - 1 : prevIndex - 1
     );
   };
 
-  const handleSubjectSubmit = () => {
-    console.log("new subject", newSubject);
-    setNewSubject("");
+  const handleSubjectSubmit = async () => {
+    console.log("Sending request with data:", { subject: newSubject });
+
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/generate_flashcards/?topic=${newSubject}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to create flashcards");
+      }
+      const data = await response.json();
+      setFlashcards(data.flashcards);
+      setCurrentCardIndex(0); // Reset to first card
+    } catch (error) {
+      console.error("Error creating flashcards:", error);
+    }
   };
 
   return (
@@ -78,10 +110,12 @@ const FlashcardList = () => {
           Create Subject
         </button>
       </div>
-      <Flashcard
-        question={flashcardsData[currentCardIndex].question}
-        answer={flashcardsData[currentCardIndex].answer}
-      />
+      {flashcards.length > 0 && (
+        <Flashcard
+          question={flashcards[currentCardIndex].question}
+          answer={flashcards[currentCardIndex].answer}
+        />
+      )}
       <div className="navigation-buttons">
         <div className="">
           <button
