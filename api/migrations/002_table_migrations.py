@@ -62,8 +62,7 @@ steps = [
         CREATE TABLE flashcards (
             flashcard_id SERIAL PRIMARY KEY NOT NULL,
             topic VARCHAR(50) NOT NULL,
-            question VARCHAR(255) NOT NULL,
-            answer VARCHAR(255) NOT NULL
+            flashcard VARCHAR(10000) NOT NULL
         );
         """,
         # "Down" SQL statement
