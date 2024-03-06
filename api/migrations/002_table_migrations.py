@@ -62,7 +62,8 @@ steps = [
         CREATE TABLE flashcards (
             flashcard_id SERIAL PRIMARY KEY NOT NULL,
             topic VARCHAR(50) NOT NULL,
-            flashcard VARCHAR(10000) NOT NULL
+            flashcard VARCHAR(10000) NOT NULL,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
         """,
         # "Down" SQL statement
@@ -82,3 +83,4 @@ steps = [
 # column in the users table. It allows you to associate 
 # each chat_response with a specific user. If this meets 
 # your requirements, then your table structure is appropriate.
+
