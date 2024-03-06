@@ -49,6 +49,10 @@
   z-index: 1;
 }
 
+.button-mover {
+  margin-right: 4rem;
+}
+
 .navigation-buttons button:hover {
   background-color: #ff6600;
 }
@@ -83,6 +87,7 @@
 .create-subject-button {
   padding: 10px 20px;
   margin: 2rem;
+  margin-left: 1rem;
   background-color: white; /* Green color */
   color: black; /* White text */
   border: 2px solid #ccc;

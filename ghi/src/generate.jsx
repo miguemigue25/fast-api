@@ -292,7 +292,7 @@ const FlashcardList = () => {
         />
       )}
       <div className="navigation-buttons">
-        <div className="">
+        <div className="button-mover">
           <button
             onClick={goToNextCard}
             style={{

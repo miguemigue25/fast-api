@@ -73,7 +73,7 @@
 import React, { useState, useEffect } from "react";
 import "./FlashCardSetTable.css";
 
-const FlashcardModal = ({ flashcardId, onClose }) => {
+const FlashcardModal = ({ flashcardId, onClose, topic }) => {
   const [flashcards, setFlashcards] = useState([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -85,7 +85,7 @@ const FlashcardModal = ({ flashcardId, onClose }) => {
     fetch(`http://localhost:8000/flashcards/${flashcardId}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("API Response:", data); // Log the API response
+        console.log("API Response:", data);
         setFlashcards(data.flashcards);
       })
       .catch((error) => console.error("Error fetching flashcards:", error));
@@ -131,7 +131,7 @@ const FlashcardModal = ({ flashcardId, onClose }) => {
           &times;
         </span>
         <div>
-          <h2>{currentFlashcard.topic} Flashcards</h2>
+          <h2>{topic}</h2>
           <div className="flashcard">
             <div className="flashcard-question">
               <h3>Question:</h3>
