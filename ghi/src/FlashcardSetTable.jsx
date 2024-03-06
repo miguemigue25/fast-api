@@ -10,6 +10,7 @@ const FlashcardSetsTable = () => {
     fetch("http://localhost:8000/flashcards")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         // Set the fetched data to the state
         setFlashcardSets(data.flashcards);
       })
