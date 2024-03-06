@@ -47,3 +47,30 @@
 .flashcard-sets-table button:hover {
   background-color: #0056b3;
 }
+
+/* Modal styles */
+.modal {
+  position: fixed; /* Position the modal relative to the viewport */
+  top: 50%; /* Center the modal vertically */
+  left: 50%; /* Center the modal horizontally */
+  transform: translate(-50%, -50%); /* Center the modal precisely */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  width: 80%; /* Set the width of the modal */
+  max-width: 600px; /* Set maximum width */
+  padding: 20px; /* Add padding */
+  border-radius: 5px; /* Add border radius */
+  z-index: 1000; /* Ensure modal appears on top of other elements */
+}
+
+.modal-content {
+  background-color: #fff; /* Set background color of modal content */
+  padding: 20px; /* Add padding */
+  border-radius: 5px; /* Add border radius */
+}
+
+.close {
+  position: absolute; /* Position the close button */
+  top: 10px; /* Set top position */
+  right: 10px; /* Set right position */
+  cursor: pointer; /* Change cursor to pointer */
+}
