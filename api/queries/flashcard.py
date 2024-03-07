@@ -149,3 +149,20 @@ class FlashcardRepo:
                     )
         except Exception as e:
             return Error(message=str(e))
+        
+        
+    def delete_flashcard(self, flashcard_id: int) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM flashcards
+                        WHERE flashcard_id = %s
+                        """,
+                        [flashcard_id],
+                    )
+                    return True
+        except Exception as e:
+            print(e)
+            return False

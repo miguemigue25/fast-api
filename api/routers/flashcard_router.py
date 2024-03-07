@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from queries.flashcard import FlashcardRepo, FlashcardsResponse, FlashcardItem, Error
 from typing import Union, Optional, List
 from pydantic import ValidationError
+from authenticator import authenticator
 
 router = APIRouter()
 
@@ -31,3 +32,12 @@ def get_flashcard_by_id(flashcard_id: int, repo: FlashcardRepo = Depends()):
         return repo.get_flashcard_by_id(flashcard_id)
     except ValidationError as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+
+@router.delete("/flashcards/{flashcard_id}", response_model=bool)
+def delete_flashcard(
+    flashcard_id: int,
+    flashcard_data: dict = Depends(authenticator.get_current_account_data),
+    repo: FlashcardRepo = Depends(),
+) -> bool:
+    return repo.delete_flashcard(flashcard_id)
