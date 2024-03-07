@@ -62,7 +62,10 @@ const FlashcardSetsTable = () => {
   };
 
   // Function to handle delete button click
-  const handleDelete = async (flashcardId) => {
+  const handleDelete = async (flashcardId, event) => {
+    // Prevent the row click event from being triggered
+    event.stopPropagation();
+
     try {
       const response = await fetch(
         `http://localhost:8000/flashcards/${flashcardId}`,
@@ -107,11 +110,16 @@ const FlashcardSetsTable = () => {
           </thead>
           <tbody>
             {flashcardSets.map((set) => (
-              <tr key={set.flashcard_id}>
+              <tr
+                key={set.flashcard_id}
+                onClick={() => handleRowClick(set.flashcard_id, set.topic)}
+              >
                 <td>{set.topic}</td>
                 <td>{set.flashcards.length}</td>
                 <td>
-                  <button onClick={() => handleDelete(set.flashcard_id)}>
+                  <button
+                    onClick={(event) => handleDelete(set.flashcard_id, event)}
+                  >
                     Delete
                   </button>
                 </td>
