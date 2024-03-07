@@ -176,7 +176,7 @@ const Flashcard = ({ question, answer }) => {
   };
 
   return (
-    <div className="flashcard" onClick={toggleAnswer}>
+    <div className="flashcard-gen" onClick={toggleAnswer}>
       <div className="question">{question}</div>
       {isAnswerShown && <div className="answer">{answer}</div>}
     </div>
@@ -292,7 +292,7 @@ const FlashcardList = () => {
         />
       )}
       <div className="navigation-buttons">
-        <div className="">
+        <div className="button-mover">
           <button
             onClick={goToNextCard}
             style={{

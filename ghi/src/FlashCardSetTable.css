@@ -1,9 +1,10 @@
 /* FlashCardSetTable.css */
 
 .table-container {
-  margin-top: 12rem;
+  margin-top: 4rem;
   margin-left: 20rem;
   margin-right: 20rem;
+  margin-bottom: 4rem;
 }
 
 .outer-container {
@@ -17,16 +18,29 @@
   border-collapse: collapse;
 }
 
-.flashcard-sets-table th,
-.flashcard-sets-table td {
-  padding: 12px;
+.flashcard-sets-table th {
+  padding: 22px;
   border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.flashcard-sets-table td {
+  padding: 22px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }
 
 .flashcard-sets-table th {
   background-color: #f2f2f2;
   font-weight: bold;
+  padding: 22px;
+  border-bottom: 1px solid #ddd;
+  margin: 1rem;
   text-align: left;
+}
+
+.topic-header {
+  padding-right: 2rem;
 }
 
 .flashcard-sets-table tr:hover {
@@ -55,7 +69,7 @@
   left: 50%; /* Center the modal horizontally */
   transform: translate(-50%, -50%); /* Center the modal precisely */
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  width: 80%; /* Set the width of the modal */
+  width: 70%; /* Set the width of the modal */
   max-width: 600px; /* Set maximum width */
   padding: 20px; /* Add padding */
   border-radius: 5px; /* Add border radius */
@@ -70,7 +84,58 @@
 
 .close {
   position: absolute; /* Position the close button */
-  top: 10px; /* Set top position */
-  right: 10px; /* Set right position */
+  top: 0.5rem; /* Set top position */
+  right: 1rem; /* Set right position */
   cursor: pointer; /* Change cursor to pointer */
+  font-size: xx-large;
+  margin-top: -0.5rem;
+  padding: 0.5rem;
+}
+
+.flashcard {
+  text-align: center;
+  margin-left: 7rem;
+  margin-bottom: auto;
+  padding-bottom: 4rem;
+  padding-right: 6rem;
+}
+
+.flashcard-question {
+  background-color: #f0f0f0;
+
+  border-radius: 5px;
+}
+
+.flashcard-answer {
+  background-color: #e0e0e0;
+  padding: 10px;
+  padding-bottom: -2rem;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+h2 {
+  text-align: center;
+  padding: 2rem;
+  text-transform: capitalize;
+}
+
+.navigation-buttons {
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-left: 3rem;
+}
+
+.navigation-buttons button {
+  font-weight: bold;
+  padding: 5px 10px; /* Adjust padding as needed */
+  background-color: #4caf50; /* Set background color */
+  color: white; /* Set text color */
+  border: none; /* Remove border */
+  cursor: pointer; /* Add pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.navigation-buttons button:hover {
+  background-color: #45a049; /* Darker background color on hover */
 }
