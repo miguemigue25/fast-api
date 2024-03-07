@@ -10,6 +10,7 @@ router = APIRouter()
 async def generate_flashcards(
     topic: str,
     repo: FlashcardRepo = Depends(),
+    data: dict = Depends(authenticator.get_current_account_data),
 ):
     try:
         flashcards_response = repo.generate_flashcards(topic)
@@ -19,7 +20,10 @@ async def generate_flashcards(
 
 
 @router.get("/flashcards", response_model=Union[FlashcardsResponse, Error])
-def get_all_flashcards(repo: FlashcardRepo = Depends()):
+def get_all_flashcards(
+    repo: FlashcardRepo = Depends(),
+    data: dict = Depends(authenticator.get_current_account_data),
+):
     try:
         return repo.get_all_flashcards()
     except ValidationError as e:
@@ -27,7 +31,11 @@ def get_all_flashcards(repo: FlashcardRepo = Depends()):
     
 
 @router.get("/flashcards/{flashcard_id}", response_model=Union[FlashcardItem, Error])
-def get_flashcard_by_id(flashcard_id: int, repo: FlashcardRepo = Depends()):
+def get_flashcard_by_id(
+    flashcard_id: int, 
+    repo: FlashcardRepo = Depends(),
+    data: dict = Depends(authenticator.get_current_account_data),
+):
     try:
         return repo.get_flashcard_by_id(flashcard_id)
     except ValidationError as e:
