@@ -176,7 +176,7 @@ const Flashcard = ({ question, answer }) => {
   };
 
   return (
-    <div className="flashcard" onClick={toggleAnswer}>
+    <div className="flashcard-gen" onClick={toggleAnswer}>
       <div className="question">{question}</div>
       {isAnswerShown && <div className="answer">{answer}</div>}
     </div>

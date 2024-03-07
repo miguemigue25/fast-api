@@ -1,9 +1,10 @@
 /* FlashCardSetTable.css */
 
 .table-container {
-  margin-top: 12rem;
+  margin-top: 4rem;
   margin-left: 20rem;
   margin-right: 20rem;
+  margin-bottom: 4rem;
 }
 
 .outer-container {
@@ -68,7 +69,7 @@
   left: 50%; /* Center the modal horizontally */
   transform: translate(-50%, -50%); /* Center the modal precisely */
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  width: 80%; /* Set the width of the modal */
+  width: 70%; /* Set the width of the modal */
   max-width: 600px; /* Set maximum width */
   padding: 20px; /* Add padding */
   border-radius: 5px; /* Add border radius */
@@ -96,6 +97,7 @@
   margin-left: 7rem;
   margin-bottom: auto;
   padding-bottom: 4rem;
+  padding-right: 6rem;
 }
 
 .flashcard-question {
