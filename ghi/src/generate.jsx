@@ -167,6 +167,7 @@
 
 import React, { useState, useEffect } from "react";
 import "./generate.css";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 const Flashcard = ({ question, answer }) => {
   const [isAnswerShown, setIsAnswerShown] = useState(false);
@@ -184,6 +185,7 @@ const Flashcard = ({ question, answer }) => {
 };
 
 const FlashcardList = () => {
+  const { token } = useToken();
   const [flashcards, setFlashcards] = useState([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [newSubject, setNewSubject] = useState("");
@@ -196,7 +198,12 @@ const FlashcardList = () => {
   const fetchFlashcards = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/generate_flashcards/?topic=${newSubject}`
+        `http://localhost:8000/generate_flashcards/?topic=${newSubject}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token in request headers
+          },
+        }
       );
       if (!response.ok) {
         throw new Error("Failed to fetch flashcards");
@@ -234,6 +241,7 @@ const FlashcardList = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include token in request headers
           },
           body: JSON.stringify({}),
         }

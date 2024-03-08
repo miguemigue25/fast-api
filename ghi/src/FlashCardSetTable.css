@@ -1,10 +1,8 @@
 /* FlashCardSetTable.css */
 
 .table-container {
-  margin-top: 4rem;
-  margin-left: 20rem;
-  margin-right: 20rem;
-  margin-bottom: 4rem;
+  margin: 4rem auto; /* Center the table horizontally and add top/bottom margin */
+  max-width: 800px;
 }
 
 .outer-container {
@@ -27,7 +25,7 @@
 .flashcard-sets-table td {
   padding: 22px;
   border-bottom: 1px solid #ddd;
-  text-align: left;
+  text-align: center;
 }
 
 .flashcard-sets-table th {
@@ -36,7 +34,7 @@
   padding: 22px;
   border-bottom: 1px solid #ddd;
   margin: 1rem;
-  text-align: left;
+  text-align: center;
 }
 
 .topic-header {
@@ -44,22 +42,24 @@
 }
 
 .flashcard-sets-table tr:hover {
-  background-color: #f9f9f9;
+  background-color: white;
+  cursor: pointer;
 }
 
 .flashcard-sets-table button {
   padding: 8px 12px;
-  border: none;
+  border: solid black 1px;
   border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: white;
+  color: black;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .flashcard-sets-table button:hover {
-  background-color: #0056b3;
+  background-color: #ff6600;
+  color: black;
 }
 
 /* Modal styles */
@@ -129,13 +129,26 @@ h2 {
 .navigation-buttons button {
   font-weight: bold;
   padding: 5px 10px; /* Adjust padding as needed */
-  background-color: #4caf50; /* Set background color */
-  color: white; /* Set text color */
+  background-color: white; /* Set background color */
+  color: black; /* Set text color */
   border: none; /* Remove border */
   cursor: pointer; /* Add pointer cursor on hover */
   transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
 .navigation-buttons button:hover {
-  background-color: #45a049; /* Darker background color on hover */
+  background-color: #ff6600; /* Darker background color on hover */
+}
+
+.delete-button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: red; /* Color of the X */
+}
+
+.delete-button:hover {
+  background-color: orange; /* Hover background color */
+  color: white; /* Hover text color */
 }
