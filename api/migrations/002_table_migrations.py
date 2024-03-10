@@ -61,7 +61,8 @@ steps = [
         """
         CREATE TABLE flashcards (
             flashcard_id SERIAL PRIMARY KEY NOT NULL,
-            topic VARCHAR(50) NOT NULL,
+            user_id INT REFERENCES users(user_id) ON DELETE CASCADE NOT NULL,
+            topic VARCHAR(200) NOT NULL,
             flashcard VARCHAR(10000) NOT NULL,
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
