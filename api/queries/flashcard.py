@@ -6,8 +6,10 @@ from datetime import datetime
 from queries.pool import pool
 import json
 
+
 class FlashcardItem(BaseModel):
     flashcard_id: int
+    user_id: int
     topic: str
     flashcards: List[Dict[str, Union[str, str]]]
     created_at: datetime = Field(default_factory=datetime.now)
@@ -30,17 +32,18 @@ class FlashcardRepo:
 
     @staticmethod
     def _get_flashcard_item_from_row(row):
-        flashcard_id, topic, flashcards_json, created_at = row
+        flashcard_id, user_id, topic, flashcards_json, created_at = row
         flashcards_data = json.loads(flashcards_json)
         flashcards = [{"question": item["question"], "answer": item["answer"]} for item in flashcards_data]
         return FlashcardItem(
-            flashcard_id=flashcard_id, 
+            flashcard_id=flashcard_id,
+            user_id=user_id, 
             topic=topic, 
             flashcards=flashcards,
             created_at=created_at
         )
 
-    def generate_flashcards(self, topic: str) -> Union[FlashcardsResponse, Error]:
+    def generate_flashcards(self, user_id, topic: str) -> Union[FlashcardsResponse, Error]:
         try:
             client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
             completion = client.chat.completions.create(
@@ -71,11 +74,12 @@ class FlashcardRepo:
                         db.execute(
                             """
                             INSERT INTO flashcards 
-                                (topic, flashcard, created_at) 
+                                (user_id, topic, flashcard, created_at) 
                             VALUES 
-                                (%s, %s, %s)
+                                (%s, %s, %s, %s)
                             """, 
                             (
+                                user_id,
                                 topic, 
                                 flashcards_json,
                                 datetime.now()
@@ -84,7 +88,7 @@ class FlashcardRepo:
                         conn.commit()
 
                         flashcards_list.append(FlashcardRepo._get_flashcard_item_from_row(
-                            (FlashcardRepo.flashcard_id, topic, flashcards_json, datetime.now())
+                            (FlashcardRepo.flashcard_id, user_id, topic, flashcards_json, datetime.now())
                         ))
                         FlashcardRepo.flashcard_id += 1  
 
@@ -92,16 +96,18 @@ class FlashcardRepo:
         except Exception as e:
             return Error(message=str(e))
 
-    def get_all_flashcards(self) -> Union[List[FlashcardItem], Error]:
+    def get_all_flashcards(self, user_id) -> Union[List[FlashcardItem], Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
                         """
                         SELECT 
-                            flashcard_id, topic, flashcard, created_at
-                        FROM flashcards;
+                            flashcard_id, user_id, topic, flashcard, created_at
+                        FROM flashcards
+                        WHERE user_id = %s;
                         """,
+                        [user_id]
                     )
                     
                     rows = db.fetchall()
@@ -116,19 +122,20 @@ class FlashcardRepo:
             return Error(message=str(e))
         
 
-    def get_flashcard_by_id(self, flashcard_id: int) -> Union[FlashcardItem, Error]:
+    def get_flashcard_by_id(self, user_id, flashcard_id: int) -> Union[FlashcardItem, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
                         """
                         SELECT 
-                            flashcard_id, topic, flashcard, created_at 
+                            flashcard_id, user_id, topic, flashcard, created_at 
                         FROM flashcards 
-                        WHERE flashcard_id = %s
+                        WHERE flashcard_id = %s AND user_id = %s
                         """, 
                         (
                             flashcard_id,
+                            user_id
                         )
                     )
                     
@@ -137,13 +144,14 @@ class FlashcardRepo:
                     if not row:
                         return Error(message=f"Flashcard with flashcard_id {flashcard_id} not found")
 
-                    flashcard_id, topic, flashcards_json, created_at = row
+                    flashcard_id, user_id, topic, flashcards_json, created_at = row
                     flashcards_data = json.loads(flashcards_json)
                     flashcards = [{"question": item["question"], "answer": item["answer"]} for item in flashcards_data]
 
                     return FlashcardItem(
                         flashcard_id=flashcard_id, 
-                        topic=topic, 
+                        user_id=user_id,
+                        topic=topic,
                         flashcards=flashcards,
                         created_at=created_at    
                     )
@@ -151,16 +159,19 @@ class FlashcardRepo:
             return Error(message=str(e))
         
         
-    def delete_flashcard(self, flashcard_id: int) -> bool:
+    def delete_flashcard(self, user_id, flashcard_id: int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
                         """
                         DELETE FROM flashcards
-                        WHERE flashcard_id = %s
+                        WHERE flashcard_id = %s AND user_id = %s
                         """,
-                        [flashcard_id],
+                        [
+                            flashcard_id,
+                            user_id
+                        ],
                     )
                     return True
         except Exception as e:

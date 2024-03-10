@@ -13,7 +13,7 @@ async def generate_flashcards(
     data: dict = Depends(authenticator.get_current_account_data),
 ):
     try:
-        flashcards_response = repo.generate_flashcards(topic)
+        flashcards_response = repo.generate_flashcards(user_id=data["user_id"], topic=topic)
         return flashcards_response
     except Error as e:
         raise HTTPException(status_code=500, detail=e.message)
@@ -25,7 +25,7 @@ def get_all_flashcards(
     data: dict = Depends(authenticator.get_current_account_data),
 ):
     try:
-        return repo.get_all_flashcards()
+        return repo.get_all_flashcards(data["user_id"])
     except ValidationError as e:
         raise HTTPException(status_code=500, detail=str(e))
     
@@ -37,7 +37,7 @@ def get_flashcard_by_id(
     data: dict = Depends(authenticator.get_current_account_data),
 ):
     try:
-        return repo.get_flashcard_by_id(flashcard_id)
+        return repo.get_flashcard_by_id(data["user_id"], flashcard_id)
     except ValidationError as e:
         raise HTTPException(status_code=500, detail=str(e))
     
@@ -45,7 +45,7 @@ def get_flashcard_by_id(
 @router.delete("/flashcards/{flashcard_id}", response_model=bool)
 def delete_flashcard(
     flashcard_id: int,
-    flashcard_data: dict = Depends(authenticator.get_current_account_data),
     repo: FlashcardRepo = Depends(),
+    data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
-    return repo.delete_flashcard(flashcard_id)
+    return repo.delete_flashcard(data["user_id"], flashcard_id)
