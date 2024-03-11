@@ -105,6 +105,7 @@ const FlashcardModal = ({ flashcardId, onClose, topic }) => {
   const [flashcards, setFlashcards] = useState([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [currentFlashcard, setCurrentFlashcard] = useState(null);
 
   useEffect(() => {
     if (!flashcardId) return;
@@ -132,6 +133,12 @@ const FlashcardModal = ({ flashcardId, onClose, topic }) => {
     fetchFlashcards();
   }, [flashcardId, token]); // Include token in the dependency array
 
+  useEffect(() => {
+    if (flashcards.length > 0) {
+      setCurrentFlashcard(flashcards[currentCardIndex]);
+    }
+  }, [flashcards, currentCardIndex]);
+
   const toggleAnswer = () => {
     setShowAnswer(!showAnswer);
   };
@@ -150,21 +157,6 @@ const FlashcardModal = ({ flashcardId, onClose, topic }) => {
     }
   };
 
-  if (flashcards.length === 0) {
-    return (
-      <div className="modal">
-        <div className="modal-content">
-          <span className="close" onClick={onClose}>
-            &times;
-          </span>
-          <p>No flashcards available</p>
-        </div>
-      </div>
-    );
-  }
-
-  const currentFlashcard = flashcards[currentCardIndex];
-
   return (
     <div className="modal">
       <div className="modal-content">
@@ -174,17 +166,21 @@ const FlashcardModal = ({ flashcardId, onClose, topic }) => {
         <div>
           <h2>{topic}</h2>
           <div className="flashcard">
-            <div className="flashcard-question">
-              <h3>Question:</h3>
-              <p>{currentFlashcard.question}</p>
-            </div>
-            <div
-              className="flashcard-answer"
-              style={{ display: showAnswer ? "block" : "none" }}
-            >
-              <h3>Answer:</h3>
-              <p>{currentFlashcard.answer}</p>
-            </div>
+            {currentFlashcard && (
+              <>
+                <div className="flashcard-question">
+                  <h3>Question:</h3>
+                  <p>{currentFlashcard.question}</p>
+                </div>
+                <div
+                  className="flashcard-answer"
+                  style={{ display: showAnswer ? "block" : "none" }}
+                >
+                  <h3>Answer:</h3>
+                  <p>{currentFlashcard.answer}</p>
+                </div>
+              </>
+            )}
           </div>
           <div className="navigation-buttons">
             <button onClick={handlePrevCard} disabled={currentCardIndex === 0}>
