@@ -3,10 +3,21 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   margin-bottom: 4rem;
-  margin-top: 8rem;
-  padding: 4rem;
-  background-color: white;
+  margin-top: 6rem;
+  padding: 8rem;
+  padding-bottom: 4rem;
+  /* background: linear-gradient(to bottom right, #6b7280, #ff6600); */
+  /* background: linear-gradient(to top right, white, #6b7280); */
+  background: linear-gradient(to top left, #6b7280, white);
   clip-path: polygon(0 0, 100% 15%, 100% 100%, 0% 100%);
+}
+
+.hero-gradient {
+  background: linear-gradient(to top left, white, #ff6600);
+  /* background: linear-gradient(to top left, white, #6b7280); */
+  background: linear-gradient(to top left, #6b7280, white);
+
+  padding-top: 2rem;
 }
 
 /* .splash-container {

@@ -107,7 +107,7 @@
   border-radius: 5px;
   height: 100px;
   overflow: auto;
-  padding-top: 1rem;
+  padding: 1rem;
 }
 
 .flashcard-answer {

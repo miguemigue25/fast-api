@@ -1,43 +1,31 @@
 .signup .container {
   display: flex;
-  grid-template-columns: repeat(2, 1fr);
+  flex-direction: column; /* Change to column layout for smaller screens */
   justify-content: center;
   align-items: center;
-  padding: 30rem 1rem;
+  padding: 5rem 1rem; /* Adjust padding for smaller screens */
   background-color: #6b7280;
-  margin-left: 10rem;
+  margin-left: 2rem; /* Adjust margin for smaller screens */
 }
 
 .signup .left {
-  text-align: center;
-  margin-left: 10rem;
+  text-align: center; /* Center the content horizontally */
 }
 
-.create-middle img {
-  width: 11.5rem;
-  height: auto;
-  border-radius: 25px;
-
-  padding-top: 1rem;
-  margin-top: 2rem;
+.signup .right {
+  margin: 2rem 0; /* Adjust margin for smaller screens */
 }
 
-.study-middle img {
-  width: 18rem;
-  height: auto;
-  border-radius: 25px;
-
-  padding-top: -2rem;
-  margin-top: 2rem;
-}
+.create-middle img,
+.study-middle img,
 .signup img,
 .hero-timer-img {
-  width: 14rem;
+  width: 100%; /* Make images responsive within their containers */
+  max-width: 14rem; /* Set maximum width for images */
   height: auto;
-  border-radius: 25px;
-
-  padding-top: 2rem;
-  margin-top: 2rem;
+  border-radius: 12px;
+  margin: 2rem auto; /* Center the images horizontally */
+  margin-left: 7rem;
 }
 
 .signup img:hover,
@@ -46,103 +34,40 @@
   transition: 0.5s ease-in-out;
 }
 
-.signup .right {
-  margin: 1rem;
-}
-
 .hero-timer-container {
   display: flex;
+  flex-direction: column; /* Change to column layout for smaller screens */
   justify-content: center;
   align-items: center;
   background-color: white;
   border-radius: 12px;
-  margin-top: 10rem;
-  margin-right: 4rem;
-  margin-left: 4rem;
-  margin-bottom: 4rem;
-  width: 50%;
+  margin: 2rem 0; /* Adjust margin for smaller screens */
+  width: 100%; /* Make container responsive */
   max-width: 500px;
-  height: 400px;
-  padding-bottom: -2rem;
+  height: auto; /* Make container height automatic */
 }
 
-.hero-middle-group-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-  margin-right: -30rem;
-}
-
-.hero-middle-card {
-  margin: 4rem;
-}
-
-.hero-timer-left {
-  text-align: center;
-  order: 2;
-  margin: 2rem;
-  margin-bottom: 2rem;
-}
-
+.hero-timer-container p,
 .bottom-text {
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
-
-.hero-timer-right {
-  order: 1;
-}
-
-.hero-timer-right p {
-  margin: 2rem 0;
-}
-
-.images-container {
-  display: flex;
+  text-align: center; /* Center the text horizontally */
+  margin: 1rem 0; /* Adjust margin for smaller screens */
 }
 
 .hero-middle-group {
-  margin: -10rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  margin-left: 4rem;
+  display: flex;
+  flex-direction: column; /* Change to column layout for smaller screens */
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0; /* Adjust margin for smaller screens */
 }
 
-/* Media Queries */
-@media screen and (max-width: 940px) {
-  .signup .container {
-    grid-template-columns: 1fr;
-  }
-
-  .signup .left {
-    margin-left: 0; /* Reset margin for smaller screens */
-  }
-
-  .signup .right {
-    margin: 0; /* Reset margin for smaller screens */
-  }
-
-  .hero-timer-container {
-    width: 80%; /* Adjust container width for smaller screens */
-    margin-right: auto; /* Center container on smaller screens */
-    margin-left: auto; /* Center container on smaller screens */
-  }
+.hero-middle-card {
+  margin: 2rem 0; /* Adjust margin for smaller screens */
 }
 
-@media screen and (max-width: 768px) {
-  .signup .container {
-    padding: 15rem 1rem; /* Adjust padding for smaller screens */
-    margin-left: 2rem; /* Adjust margin for smaller screens */
-  }
-
-  .signup img,
-  .create-middle img,
-  .study-middle img,
-  .hero-timer-img {
-    width: 7rem; /* Adjust image size for smaller screens */
-  }
-
-  .hero-middle-group {
-    margin-left: 2rem; /* Adjust margin for smaller screens */
-  }
+.text-above,
+.text-below {
+  text-align: center; /* Center the text horizontally */
+  margin: 2rem 0; /* Adjust margin for smaller screens */
+  padding: 1rem;
 }

@@ -1,5 +1,6 @@
 .footer-bg {
-  background: #6b7280; /* margin-top: -1rem;
+  background: linear-gradient(to bottom right, #6b7280, #ff6600);
+  /* margin-top: -1rem;
   margin-bottom: -1rem; */
   padding-bottom: 1rem;
 }

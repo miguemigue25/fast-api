@@ -9,7 +9,7 @@ import "./footer";
 
 const Splash = () => {
   return (
-    <div>
+    <div className="hero-gradient">
       <Hero />
       <div className="margin-space splash-container">
         <HeroMiddle />
