@@ -98,18 +98,21 @@
   margin-bottom: auto;
   padding-bottom: 4rem;
   padding-right: 6rem;
+  height: 240px;
 }
 
-.flashcard-question {
+.flashcard-question,
+.flashcard-answer {
   background-color: #f0f0f0;
-
   border-radius: 5px;
+  height: 100px;
+  overflow: auto;
+  padding: 1rem;
 }
 
 .flashcard-answer {
   background-color: #e0e0e0;
   padding: 10px;
-  padding-bottom: -2rem;
   border-radius: 5px;
   margin-top: 20px;
 }

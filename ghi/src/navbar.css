@@ -2,7 +2,8 @@
   width: 100%;
   height: 90px;
   border-bottom: 1px solid #eee;
-  background: #6b7280;
+  background: linear-gradient(to bottom right, #6b7280, #ff6600);
+  /* background: linear-gradient(to top right, white, #6b7280); */
   position: sticky;
   top: 0;
   left: 0;
@@ -52,6 +53,19 @@ h1 {
   display: flex;
   font-size: 1rem;
   font-weight: 600;
+  color: white; /* Set default color */
+  text-decoration: none; /* Remove default underline */
+  transition: color 0.3s; /* Smooth transition for color change */
+}
+
+/* Hover effect */
+.nav-menu a:hover {
+  color: #ff6600; /* Change color on hover */
+}
+
+/* Active link color */
+.nav-menu a.active {
+  color: #ff6600; /* Change color for active link */
 }
 
 .logo {
@@ -99,12 +113,6 @@ h1 {
     font-size: 1.2rem;
   }
 }
-
-/* @media screen and (min-width: 768px) {
-  .hamburger {
-    display: none;
-  }
-} */
 
 @media screen and (max-width: 767px) {
   .nav-menu {

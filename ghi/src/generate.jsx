@@ -1,5 +1,6 @@
 // import React, { useState, useEffect } from "react";
 // import "./generate.css";
+// import useToken from "@galvanize-inc/jwtdown-for-react";
 
 // const Flashcard = ({ question, answer }) => {
 //   const [isAnswerShown, setIsAnswerShown] = useState(false);
@@ -9,7 +10,7 @@
 //   };
 
 //   return (
-//     <div className="flashcard" onClick={toggleAnswer}>
+//     <div className="flashcard-gen" onClick={toggleAnswer}>
 //       <div className="question">{question}</div>
 //       {isAnswerShown && <div className="answer">{answer}</div>}
 //     </div>
@@ -17,6 +18,7 @@
 // };
 
 // const FlashcardList = () => {
+//   const { token } = useToken();
 //   const [flashcards, setFlashcards] = useState([]);
 //   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 //   const [newSubject, setNewSubject] = useState("");
@@ -29,13 +31,22 @@
 //   const fetchFlashcards = async () => {
 //     try {
 //       const response = await fetch(
-//         `http://localhost:8000/generate_flashcards/?topic=${newSubject}`
+//         `http://localhost:8000/generate_flashcards/?topic=${newSubject}`,
+//         {
+//           headers: {
+//             Authorization: `Bearer ${token}`, // Include token in request headers
+//           },
+//         }
 //       );
 //       if (!response.ok) {
 //         throw new Error("Failed to fetch flashcards");
 //       }
 //       const data = await response.json();
-//       setFlashcards(data.flashcards);
+//       if (data.flashcards && data.flashcards.length > 0) {
+//         setFlashcards(data.flashcards[0].flashcards);
+//       } else {
+//         setFlashcards([]);
+//       }
 //     } catch (error) {
 //       console.error("Error fetching flashcards:", error);
 //     }
@@ -63,6 +74,7 @@
 //           method: "POST",
 //           headers: {
 //             "Content-Type": "application/json",
+//             Authorization: `Bearer ${token}`, // Include token in request headers
 //           },
 //           body: JSON.stringify({}),
 //         }
@@ -71,9 +83,12 @@
 //         throw new Error("Failed to create flashcards");
 //       }
 //       const data = await response.json();
-//       console.log(data);
-//       setFlashcards(data.flashcards);
-//       setCurrentCardIndex(0); // Reset to first card
+//       if (data.flashcards && data.flashcards.length > 0) {
+//         setFlashcards(data.flashcards[0].flashcards);
+//         setCurrentCardIndex(0); // Reset to first card
+//       } else {
+//         setFlashcards([]);
+//       }
 //     } catch (error) {
 //       console.error("Error creating flashcards:", error);
 //     }
@@ -118,7 +133,7 @@
 //         />
 //       )}
 //       <div className="navigation-buttons">
-//         <div className="">
+//         <div className="button-mover">
 //           <button
 //             onClick={goToNextCard}
 //             style={{
@@ -164,20 +179,18 @@
 // };
 
 // export default FlashcardList;
-
 import React, { useState, useEffect } from "react";
 import "./generate.css";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
-const Flashcard = ({ question, answer }) => {
-  const [isAnswerShown, setIsAnswerShown] = useState(false);
-
-  const toggleAnswer = () => {
-    setIsAnswerShown(!isAnswerShown);
+const Flashcard = ({ question, answer, isAnswerShown, toggleAnswer }) => {
+  const handleClick = () => {
+    // Call the toggleAnswer function passed from the parent
+    toggleAnswer();
   };
 
   return (
-    <div className="flashcard-gen" onClick={toggleAnswer}>
+    <div className="flashcard-gen" onClick={handleClick}>
       <div className="question">{question}</div>
       {isAnswerShown && <div className="answer">{answer}</div>}
     </div>
@@ -189,19 +202,22 @@ const FlashcardList = () => {
   const [flashcards, setFlashcards] = useState([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [newSubject, setNewSubject] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAnswerShown, setIsAnswerShown] = useState(false);
 
   useEffect(() => {
-    // Fetch flashcards from API when component mounts
     fetchFlashcards();
   }, []);
 
   const fetchFlashcards = async () => {
+    setIsLoading(true);
+
     try {
       const response = await fetch(
         `http://localhost:8000/generate_flashcards/?topic=${newSubject}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Include token in request headers
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -211,21 +227,31 @@ const FlashcardList = () => {
       const data = await response.json();
       if (data.flashcards && data.flashcards.length > 0) {
         setFlashcards(data.flashcards[0].flashcards);
+        setCurrentCardIndex(0);
       } else {
         setFlashcards([]);
       }
     } catch (error) {
       console.error("Error fetching flashcards:", error);
+    } finally {
+      setIsLoading(false);
+      setIsAnswerShown(false); // Reset isAnswerShown state
     }
   };
 
+  const toggleAnswer = () => {
+    setIsAnswerShown(!isAnswerShown);
+  };
+
   const goToNextCard = () => {
+    setIsAnswerShown(false); // Reset isAnswerShown state
     setCurrentCardIndex((prevIndex) =>
       prevIndex === flashcards.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const goToPrevCard = () => {
+    setIsAnswerShown(false); // Reset isAnswerShown state
     setCurrentCardIndex((prevIndex) =>
       prevIndex === 0 ? flashcards.length - 1 : prevIndex - 1
     );
@@ -241,7 +267,7 @@ const FlashcardList = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Include token in request headers
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({}),
         }
@@ -252,12 +278,14 @@ const FlashcardList = () => {
       const data = await response.json();
       if (data.flashcards && data.flashcards.length > 0) {
         setFlashcards(data.flashcards[0].flashcards);
-        setCurrentCardIndex(0); // Reset to first card
+        setCurrentCardIndex(0);
       } else {
         setFlashcards([]);
       }
     } catch (error) {
       console.error("Error creating flashcards:", error);
+    } finally {
+      setIsAnswerShown(false); // Reset isAnswerShown state
     }
   };
 
@@ -293,11 +321,17 @@ const FlashcardList = () => {
           Create Subject
         </button>
       </div>
-      {flashcards.length > 0 && (
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : flashcards.length > 0 ? (
         <Flashcard
           question={flashcards[currentCardIndex].question}
           answer={flashcards[currentCardIndex].answer}
+          isAnswerShown={isAnswerShown}
+          toggleAnswer={toggleAnswer} // Pass the toggleAnswer function as a prop
         />
+      ) : (
+        <Flashcard question=" " answer=" " isAnswerShown={false} />
       )}
       <div className="navigation-buttons">
         <div className="button-mover">
