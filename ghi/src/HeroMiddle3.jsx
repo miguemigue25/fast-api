@@ -10,10 +10,10 @@ const HeroMiddle3 = () => {
       <div className="study-middle">
         <div className="hero-timer-right hero-timer-left">
           <h2>Save your flashcards</h2>
-          <div className="images-container"></div>
+          <div className="center-image"></div>
           <img src={study} alt="" className="" />
-          <div className="bottom-text">
-            Save your study sessions and all your generated flashcard sets.
+          <div className="bottom-text3">
+            Save all your generated flashcard sets
           </div>
           <div className="input-container">
             {/* <Link to="login">

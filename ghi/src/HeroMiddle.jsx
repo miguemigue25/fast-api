@@ -11,13 +11,13 @@ const HeroMiddle = () => {
           <Link to="login">
             <h2 className="text-above">Signup to get started</h2>
           </Link>
-          <div className="images-container">
-            <div className="image-container">
+          <div className="signup-image">
+            <div className="signup-image">
               <img src={signup} alt="" className="" />
             </div>
           </div>
-          <div className="bottom-text text-below">
-            Signup to start creating your flashcards now!
+          <div className="bottom-text">
+            Signup to start creating your flashcards
           </div>
           <div className="input-container">
             {/* <Link to="login">
