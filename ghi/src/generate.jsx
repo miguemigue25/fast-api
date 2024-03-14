@@ -296,6 +296,9 @@ const FlashcardList = () => {
         placeholder="Enter new subject"
         value={newSubject}
         onChange={(e) => setNewSubject(e.target.value)}
+        style={{
+          backgroundColor: "white"
+        }}
       />
       <div>
         <button
