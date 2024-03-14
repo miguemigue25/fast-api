@@ -155,3 +155,124 @@ h2 {
   background-color: orange; /* Hover background color */
   color: white; /* Hover text color */
 }
+
+@media (max-width: 800px){
+  .table-container h2 {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .flashcard-question, .flashcard-answer {
+    width: 350px;
+  }
+  .flashcard {
+    text-align: center;
+    margin-left: 4rem;
+    
+  }
+  .navigation-buttons {
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 733px){
+  .table-container h2 {
+    font-weight: 600;
+  }
+  .flashcard-question, .flashcard-answer {
+    width:350px;
+  }
+  .flashcard {
+    margin-left: 2.5rem;
+  }
+  .navigation-buttons {
+    margin-left: -1rem;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 687px) {
+  .flashcard-question, .flashcard-answer {
+    width:325px;
+  }
+  .navigation-buttons {
+    margin-left: -2rem;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 664px) {
+  .navigation-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .flashcard-question, .flashcard-answer {
+    display: flexbox;
+  }
+}
+
+@media (max-width: 615px) {
+  .flashcard-question, .flashcard-answer {
+    margin-left: -1.5rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .flashcard-question, .flashcard-answer {
+    margin-left: -2.5rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .flashcard-question, .flashcard-answer {
+    width: 300px;
+    margin-left: -2.5rem;
+  }
+}
+
+@media (max-width: 515px) {
+  .flashcard-question, .flashcard-answer {
+    margin-left: -3rem;
+  }
+}
+
+@media (max-width:500px) {
+  .flashcard-question, .flashcard-answer {
+    width:290px;
+  }
+  .flashcard {
+    margin-left: 2.25rem;
+  }
+  .navigation-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+
+  }
+}
+
+@media (max-width: 485px) {
+  .flashcard-question, .flashcard-answer {
+    width: 275px;
+    margin-left: -3rem;
+  }
+}
+
+@media (max-width: 465px) {
+  .flashcard-question, .flashcard-answer {
+    width: 265px;
+    margin-left: -3rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .flashcard-question, .flashcard-answer {
+    width: 250px;
+    margin-left: -3rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .flashcard-question, .flashcard-answer {
+    width: 240px;
+    margin-left: -3rem;
+  }
+}
