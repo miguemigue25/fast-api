@@ -16,16 +16,39 @@
   margin: 2rem 0; /* Adjust margin for smaller screens */
 }
 
-.create-middle img,
-.study-middle img,
-.signup img,
-.hero-timer-img {
+.create-middle img {
   width: 100%; /* Make images responsive within their containers */
   max-width: 14rem; /* Set maximum width for images */
   height: auto;
   border-radius: 12px;
-  margin: 2rem auto; /* Center the images horizontally */
+  margin: 2rem 4rem; /* Center the images horizontally */
   margin-left: 7rem;
+}
+
+.study-middle img {
+  width: 100%; /* Make images responsive within their containers */
+  max-width: 16rem; /* Set maximum width for images */
+  height: auto;
+  border-radius: 12px;
+  margin: 0.5rem;
+  margin-bottom: -0.75rem;
+  margin-left: 7rem;
+}
+
+.signup img {
+  width: 100%; /* Make images responsive within their containers */
+  max-width: 14rem; /* Set maximum width for images */
+  height: auto;
+  border-radius: 12px;
+  margin: 2rem auto 2rem; /* Center the images horizontally */
+  margin-left: 7rem;
+}
+
+/* .signup-image {
+} */
+
+.center-image {
+  margin: 2.5rem;
 }
 
 .signup img:hover,
@@ -50,7 +73,24 @@
 .hero-timer-container p,
 .bottom-text {
   text-align: center; /* Center the text horizontally */
-  margin: 1rem 0; /* Adjust margin for smaller screens */
+  margin: 1.2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.bottom-text2 {
+  text-align: center; /* Center the text horizontally */
+  margin: 1.2rem;
+  padding-top: -2rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.bottom-text3 {
+  text-align: center; /* Center the text horizontally */
+  margin: 1.2rem;
+  padding-top: 4rem;
+  margin-bottom: 3rem;
 }
 
 .hero-middle-group {

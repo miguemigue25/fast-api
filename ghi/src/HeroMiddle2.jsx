@@ -12,7 +12,7 @@ const HeroMiddle2 = () => {
           <h2>Create flashcards</h2>
           <div className="images-container"></div>
           <img src={Hero} alt="" className="img" />
-          <div className="bottom-text">
+          <div className="bottom-text2">
             Generate flashcards based on any subject
           </div>
           <div className="input-container">
