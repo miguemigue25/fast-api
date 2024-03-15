@@ -1,6 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
-from queries.flashcard import FlashcardRepo, FlashcardsResponse, FlashcardItem, Error
-from typing import Union, Optional, List
+from queries.flashcard import (
+    FlashcardRepo, 
+    FlashcardsResponse, 
+    FlashcardItem, 
+    Error
+)
+from typing import Union
 from pydantic import ValidationError
 from authenticator import authenticator
 
