@@ -34,9 +34,10 @@
 }
 
 .hero img {
-  max-width: 80%;
-  border-radius: 20px;
+  max-width: 100%;
+
   margin: auto;
+  margin-left: 3rem;
 }
 
 @media screen and (max-width: 940px) {
@@ -61,7 +62,7 @@
 }
 @media (max-width: 768px) {
   .left {
-    width: 60%;  
+    width: 60%;
   }
   .container img {
     margin-left: 5rem;
@@ -69,7 +70,7 @@
 }
 @media (max-width: 725px) {
   .left {
-    width: 50%;  
+    width: 50%;
     margin-left: 4rem;
   }
   .container img {
@@ -80,7 +81,7 @@
 
 @media (max-width: 665px) {
   .left {
-    width: 50%;  
+    width: 50%;
     margin-left: 2rem;
   }
   .container img {
@@ -91,7 +92,7 @@
 
 @media (max-width: 630px) {
   .left {
-    width: 50%;  
+    width: 50%;
     margin-left: 1rem;
   }
   .container img {
@@ -102,7 +103,7 @@
 
 @media (max-width: 615px) {
   .left {
-    width: 45%;  
+    width: 45%;
     margin-left: 1rem;
   }
   .container img {
@@ -113,7 +114,7 @@
 
 @media (max-width: 550px) {
   .left {
-    width: 42%;  
+    width: 42%;
     margin-left: 1rem;
   }
   .container img {
@@ -124,7 +125,7 @@
 
 @media (max-width: 515px) {
   .left {
-    width: 40%;  
+    width: 40%;
     margin-left: 1rem;
   }
   .container img {
