@@ -1,13 +1,15 @@
 # volumes:
 volumes:
-    postgres-data:
-        external: true
+  postgres-data:
+    external: true
 services:
   fastapi:
     environment:
       CORS_HOST: http://localhost:3000
       DATABASE_URL: postgresql://flashcard:flashcard@postgres/flashcard
       SIGNING_KEY: 498d492588ed0f17635e1ccc13de60a835f9e422fea6273f1b6d0b09ee00d14c
+    env_file:
+      - ./api/.env
     build:
       context: api
       dockerfile: Dockerfile.dev
@@ -16,15 +18,15 @@ services:
     volumes:
       - ./api:/app
   postgres:
-      image: postgres:14.5-bullseye
-      volumes:
-          - postgres-data:/var/lib/postgresql/data
-      environment:
-          POSTGRES_PASSWORD: flashcard  
-          POSTGRES_USER: flashcard  
-          POSTGRES_DB: flashcard
-      ports:
-          - 15432:5432
+    image: postgres:14.5-bullseye
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: flashcard
+      POSTGRES_USER: flashcard
+      POSTGRES_DB: flashcard
+    ports:
+      - 15432:5432
 
   ghi:
     image: node:lts-bullseye
